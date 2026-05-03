@@ -1,0 +1,3025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AP Gov Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #1a2f45;
+    --navy-light: #243b55;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-dim: #8a6f32;
+    --cream: #f5f0e8;
+    --cream-dim: #e0d8c8;
+    --red-accent: #c0392b;
+    --teal-accent: #1a7f74;
+    --text-main: #f5f0e8;
+    --text-muted: #9aacbe;
+    --text-dark: #2c1810;
+    --card-bg: rgba(26, 47, 69, 0.7);
+    --card-border: rgba(201, 168, 76, 0.2);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--navy);
+    color: var(--text-main);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Animated background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 10% 20%, rgba(201,168,76,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 90% 80%, rgba(26,127,116,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 50% 50%, rgba(13,27,42,1) 0%, transparent 100%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Grid pattern */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .app {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* HEADER */
+  .header {
+    padding: 60px 0 40px;
+    text-align: center;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .header-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    opacity: 0.9;
+  }
+
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 60px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .header h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .header-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  .header-rule {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 24px auto 0;
+  }
+
+  /* NAV TABS */
+  .nav {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 32px;
+    background: rgba(13,27,42,0.6);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 4px;
+    backdrop-filter: blur(12px);
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .nav-tab {
+    flex: 1;
+    padding: 10px 8px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    letter-spacing: 0.3px;
+  }
+
+  .nav-tab:hover { color: var(--cream); background: rgba(201,168,76,0.06); }
+
+  .nav-tab.active {
+    background: linear-gradient(135deg, var(--gold-dim), var(--gold));
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  /* SEARCH */
+  .search-wrap {
+    position: relative;
+    margin-bottom: 20px;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    opacity: 0.4;
+    color: var(--gold);
+    font-size: 16px;
+    pointer-events: none;
+  }
+
+  .search-bar {
+    width: 100%;
+    padding: 11px 16px 11px 40px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    backdrop-filter: blur(12px);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+
+  .search-bar::placeholder { color: var(--text-muted); }
+  .search-bar:focus { border-color: var(--gold-dim); }
+
+  /* SECTION */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* CARDS */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 10px;
+    backdrop-filter: blur(12px);
+    transition: border-color 0.2s, transform 0.15s;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .card:hover {
+    border-color: rgba(201,168,76,0.45);
+    transform: translateY(-1px);
+  }
+
+  .card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.3;
+  }
+
+  .card-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    white-space: nowrap;
+    margin-top: 3px;
+    opacity: 0.8;
+  }
+
+  .card-body {
+    font-size: 14px;
+    color: #b8cad8;
+    line-height: 1.7;
+  }
+
+  .card-body strong { color: var(--cream); font-weight: 500; }
+
+  /* BADGE */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .badge-doc { background: rgba(201,168,76,0.15); color: var(--gold); border: 1px solid rgba(201,168,76,0.3); }
+  .badge-anti { background: rgba(192,57,43,0.15); color: #e07060; border: 1px solid rgba(192,57,43,0.3); }
+  .badge-case { background: rgba(26,127,116,0.18); color: #4ec9c0; border: 1px solid rgba(26,127,116,0.3); }
+  .badge-amend { background: rgba(100,130,200,0.15); color: #88aaee; border: 1px solid rgba(100,130,200,0.3); }
+  .badge-high { background: rgba(220,170,50,0.2); color: #e8c97a; border: 1px solid rgba(220,170,50,0.4); }
+
+  /* PRINCIPLE TAG */
+  .principle-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #4ec9c0;
+    margin-bottom: 6px;
+    opacity: 0.9;
+  }
+
+  /* EXPAND */
+  .expand-btn {
+    background: none;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--gold);
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 0;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+    letter-spacing: 0.3px;
+  }
+
+  .expand-btn:hover { opacity: 1; }
+
+  .extra {
+    display: none;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    font-size: 13px;
+    color: #a8bed0;
+    line-height: 1.75;
+    animation: fadeUp 0.3s ease;
+  }
+
+  .extra.open { display: block; }
+  .extra strong { color: var(--cream); font-weight: 500; }
+
+  /* MNEMONIC */
+  .mnemonic {
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: rgba(201,168,76,0.07);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    font-size: 12.5px;
+    color: var(--gold-light);
+    line-height: 1.6;
+  }
+
+  .mnemonic strong { color: var(--gold); }
+
+  /* AMENDMENTS GRID */
+  .amend-section-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin: 28px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  /* TIP CARDS */
+  .tip-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-bottom: 12px;
+    backdrop-filter: blur(12px);
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .tip-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: var(--gold);
+    margin-bottom: 10px;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .tip-card p {
+    font-size: 13.5px;
+    color: #a8bed0;
+    line-height: 1.8;
+  }
+
+  .tip-card p strong { color: var(--cream); font-weight: 500; }
+
+  /* CONNECTION CARDS */
+  .connection {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+  }
+
+  .connection:last-child { border-bottom: none; }
+
+  .connection-arrow {
+    font-size: 18px;
+    color: var(--gold);
+    margin-top: 2px;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  .connection-text {
+    font-size: 13px;
+    color: #a8bed0;
+    line-height: 1.6;
+  }
+
+  .connection-text strong { color: var(--cream); }
+
+  /* STATS ROW */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .stat-cell {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    backdrop-filter: blur(12px);
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* HIDDEN */
+  .hidden { display: none !important; }
+
+  /* ANIMATIONS */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Staggered card animations */
+  .card:nth-child(1) { animation-delay: 0.05s; }
+  .card:nth-child(2) { animation-delay: 0.10s; }
+  .card:nth-child(3) { animation-delay: 0.15s; }
+  .card:nth-child(4) { animation-delay: 0.20s; }
+  .card:nth-child(5) { animation-delay: 0.25s; }
+  .card:nth-child(6) { animation-delay: 0.30s; }
+  .card:nth-child(7) { animation-delay: 0.35s; }
+  .card:nth-child(8) { animation-delay: 0.40s; }
+  .card:nth-child(9) { animation-delay: 0.45s; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 3px; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-eyebrow">Complete Study Reference</div>
+    <h1>AP U.S. Government<br><em>&amp; Politics</em></h1>
+    <p class="header-sub">9 Documents · 15 Court Cases · Key Amendments · Exam Strategy · 100 Practice Questions</p>
+    <div class="header-rule"></div>
+  </header>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-cell">
+      <div class="stat-num">9</div>
+      <div class="stat-label">Foundational Docs</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">15</div>
+      <div class="stat-label">Supreme Court Cases</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">27</div>
+      <div class="stat-label">Amendments</div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <button class="nav-tab active" onclick="switchTab('docs',this)">9 Documents</button>
+    <button class="nav-tab" onclick="switchTab('cases',this)">15 Cases</button>
+    <button class="nav-tab" onclick="switchTab('amends',this)">Amendments</button>
+    <button class="nav-tab" onclick="switchTab('numbers',this)">Numbers</button>
+    <button class="nav-tab" onclick="switchTab('tips',this)">Exam Tips</button>
+    <button class="nav-tab" onclick="switchTab('quiz',this); initQuiz()">🎯 Quiz</button>
+    <button class="nav-tab" onclick="switchTab('flashcards',this); initFlashcards()">🃏 Cards</button>
+  </nav>
+
+  <!-- DOCUMENTS -->
+  <section id="docs" class="section active">
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input class="search-bar" type="text" placeholder="Search documents..." oninput="filterSection(this,'docs')">
+    </div>
+
+    <div class="card" data-keywords="declaration independence 1776 jefferson natural rights grievances">
+      <div class="badge badge-doc">1776</div>
+      <div class="card-title">Declaration of Independence</div>
+      <div class="card-date">Thomas Jefferson</div>
+      <div class="card-body" style="margin-top:8px;">America's break-up letter to Britain. All people have <strong>unalienable rights</strong> — life, liberty, pursuit of happiness. Government gets its power from the <strong>consent of the governed</strong>.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Details &amp; mnemonic</button>
+      <div class="extra">
+        <strong>Core argument:</strong> Social contract theory (Locke). If government fails to protect rights, people may overthrow it.<br><br>
+        <strong>Exam connections:</strong> Compare to Federalist 51 (why government is needed) and MLK's Letter (both invoke natural/moral law).<br>
+        <div class="mnemonic"><strong>LUNG:</strong> <em>L</em>iberty, <em>U</em>nalienable rights, <em>N</em>atural law, <em>G</em>overnment by consent</div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="articles confederation 1781 weak government states cant tax">
+      <div class="badge badge-doc">1781</div>
+      <div class="card-title">Articles of Confederation</div>
+      <div class="card-date">First U.S. Constitution</div>
+      <div class="card-body" style="margin-top:8px;">America's first attempt at national government — and a famous failure. States held almost all power. Congress couldn't <strong>tax, enforce laws, or regulate trade</strong>.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Details &amp; mnemonic</button>
+      <div class="extra">
+        <strong>Key weaknesses:</strong> No president. No federal courts. One vote per state. 9/13 states to pass laws. Unanimous to amend.<br><br>
+        <strong>Why it matters:</strong> Its failures directly explain every feature of the Constitution written to replace it.<br>
+        <div class="mnemonic"><strong>CAN'T:</strong> Congress <em>C</em>an't tax, <em>A</em>rmed forces voluntary, <em>N</em>o executive, <em>T</em>rade chaos</div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="constitution 1787 separation powers federal government checks balances">
+      <div class="badge badge-doc">1787</div>
+      <div class="card-title">The U.S. Constitution</div>
+      <div class="card-date">Including Bill of Rights &amp; All Amendments</div>
+      <div class="card-body" style="margin-top:8px;">Supreme law of the land. Establishes 3 branches, <strong>separates powers</strong>, creates federalism, and protects rights through amendments.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Details &amp; mnemonic</button>
+      <div class="extra">
+        <strong>Key concepts:</strong> Separation of powers, checks &amp; balances, federalism, popular sovereignty, limited government.<br><br>
+        <strong>Structure:</strong> Preamble → 7 Articles → 27 Amendments. Art. I = Congress, Art. II = President, Art. III = Courts.<br>
+        <div class="mnemonic"><strong>SPELL:</strong> <em>S</em>eparation of powers, <em>P</em>opular sovereignty, <em>E</em>lected reps, <em>L</em>imited gov, <em>L</em>aw is supreme</div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="federalist 10 madison factions large republic pluralism">
+      <div class="badge badge-doc">Federalist</div>
+      <div class="card-title">Federalist No. 10</div>
+      <div class="card-date">James Madison</div>
+      <div class="card-body" style="margin-top:8px;">A large republic is <strong>better</strong> at controlling factions (interest groups) than a small one. More people = more diversity = no single faction dominates.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Details &amp; mnemonic</button>
+      <div class="extra">
+        <strong>The argument:</strong> Factions are dangerous but unavoidable. Don't remove liberty — control factions' <em>effects</em>. A big republic dilutes their power.<br><br>
+        <strong>Exam connection:</strong> Direct counter to Brutus 1, which says big republic = unresponsive government.<br>
+        <div class="mnemonic"><strong>10-FAN:</strong> Fed. 10 → <em>F</em>actions <em>A</em>voided in a big <em>N</em>ation</div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="brutus 1 anti-federalist large republic tyranny states rights necessary proper">
+      <div class="badge badge-anti">Anti-Federalist</div>
+      <div class="card-title">Brutus No. 1</div>
+      <div class="card-date">Anonymous (Robert Yates)</div>
+      <div class="card-body" style="margin-top:8px;">Argues <strong>against</strong> the Constitution. Large republic = government too far from the people. Necessary &amp; Proper + Supremacy Clause would let Congress swallow state power.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Details &amp; mnemonic</button>
+      <div class="extra">
+        <strong>Key fears:</strong> Standing army could oppress. Federal power would crush states. Representatives can't truly represent diverse populations.<br><br>
+        <strong>Remember:</strong> Brutus = Anti-Federalist = wants <em>small</em> government, strong states.<br>
+        <div class="mnemonic"><strong>Brutus STABS big gov:</strong> <em>S</em>tates lose power, <em>T</em>axation without care, <em>A</em>rmy dangers, <em>B</em>ig gov = tyranny, <em>S</em>mall republic is better</div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="federalist 51 madison checks balances separation powers ambition">
+      <div class="badge badge-doc">Federalist</div>
+      <div class="card-title">Federalist No. 51</div>
+      <div class="card-date">James Madison</div>
+      <div class="card-body" style="margin-top:8px;">"Ambition must be made to counteract ambition." Each branch needs tools to defend itself from the others. <strong>Checks &amp; balances</strong> protect liberty because men aren't angels.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Details &amp; mnemonic</button>
+      <div class="extra">
+        <strong>Key idea:</strong> If men were angels, no government necessary. Since they're not, we need both government AND checks on government. Federalism = double security.<br>
+        <div class="mnemonic"><strong>51 = CHECKS:</strong> Fed. 51 → <em>C</em>hecks &amp; balances are <em>H</em>ow we <em>E</em>nsure each branch <em>C</em>ontrols others, <em>K</em>eeping <em>S</em>afeguards in place</div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="federalist 70 hamilton executive energy strong president single">
+      <div class="badge badge-doc">Federalist</div>
+      <div class="card-title">Federalist No. 70</div>
+      <div class="card-date">Alexander Hamilton</div>
+      <div class="card-body" style="margin-top:8px;">Argues for a single, <strong>energetic president</strong>. One person = clear accountability + quick decisions. Multiple executives would cause conflict and weakness.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Details &amp; mnemonic</button>
+      <div class="extra">
+        <strong>Key argument:</strong> "Energy in the executive is a leading character in the definition of good government." A single president can act fast and be held responsible.<br>
+        <div class="mnemonic"><strong>70 = ONE strong E:</strong> Hamilton says <em>ONE</em> energetic executive is best</div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="federalist 78 hamilton judiciary judicial review lifetime tenure least dangerous">
+      <div class="badge badge-doc">Federalist</div>
+      <div class="card-title">Federalist No. 78</div>
+      <div class="card-date">Alexander Hamilton</div>
+      <div class="card-body" style="margin-top:8px;">Courts are the "least dangerous branch." Defends <strong>lifetime judicial tenure</strong> and anticipates judicial review — courts can strike down unconstitutional laws.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Details &amp; mnemonic</button>
+      <div class="extra">
+        <strong>Key argument:</strong> Judges need lifetime tenure ("good behavior") to be free from political pressure. Courts protect minority rights against temporary majorities.<br><br>
+        <strong>Exam connection:</strong> Directly foreshadows <em>Marbury v. Madison</em>.<br>
+        <div class="mnemonic"><strong>78 = JUDGE for LIFE:</strong> <em>J</em>udges <em>U</em>nder <em>D</em>uty <em>G</em>uard <em>E</em>veryone, serving for <em>LIFE</em></div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="letter birmingham jail mlk civil disobedience just unjust law natural rights 1963">
+      <div class="badge badge-doc">1963</div>
+      <div class="card-title">Letter from Birmingham Jail</div>
+      <div class="card-date">Martin Luther King Jr.</div>
+      <div class="card-body" style="margin-top:8px;">MLK defends nonviolent protest against unjust laws. An unjust law degrades human dignity. Citizens have a <strong>moral responsibility to disobey</strong> unjust laws openly.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Details &amp; mnemonic</button>
+      <div class="extra">
+        <strong>Key distinction:</strong> Just law = aligns with moral/natural law. Unjust law = conflicts with it. Civil disobedience must be open, loving, and accept punishment.<br><br>
+        <strong>Exam connections:</strong> Declaration of Independence (natural rights), 1st Amendment (protest), Brown v. Board (civil rights).<br>
+        <div class="mnemonic"><strong>MLK's JUST rule:</strong> <em>J</em>ust laws uplift, <em>U</em>njust laws degrade, <em>S</em>tand nonviolently, <em>T</em>ake the punishment</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASES -->
+  <section id="cases" class="section">
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input class="search-bar" type="text" placeholder="Search cases..." oninput="filterSection(this,'cases')">
+    </div>
+
+    <div class="card" data-keywords="marbury madison 1803 judicial review supreme court constitution">
+      <div class="principle-tag">Judicial Review</div>
+      <div class="card-title">Marbury v. Madison <span style="font-family:'DM Mono';font-size:11px;color:var(--text-muted);font-weight:300;"> · 1803</span></div>
+      <div class="card-body" style="margin-top:6px;">The Supreme Court can strike down laws that violate the Constitution. Established <strong>judicial review</strong> — the foundation of court power.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Story &amp; mnemonic</button>
+      <div class="extra">
+        <strong>Simple story:</strong> Adams appointed Marbury as a judge last minute. Jefferson refused to deliver the commission. Marshall said: even though Marbury deserves it, the law giving the Court this specific power was unconstitutional — so we won't enforce it, but we ARE the ones who say what's constitutional.<br>
+        <div class="mnemonic"><strong>Marbury = Map:</strong> Just like a map tells you what's there, the Court tells you what the law is.</div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="mcculloch maryland 1819 implied powers necessary proper supremacy federal bank">
+      <div class="principle-tag">Implied Powers &amp; Federal Supremacy</div>
+      <div class="card-title">McCulloch v. Maryland <span style="font-family:'DM Mono';font-size:11px;color:var(--text-muted);font-weight:300;"> · 1819</span></div>
+      <div class="card-body" style="margin-top:6px;">Congress has <strong>implied powers</strong> (Necessary &amp; Proper Clause). States cannot tax the federal government. Federal law is supreme.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Story &amp; mnemonic</button>
+      <div class="extra">
+        <strong>Simple story:</strong> Maryland tried to tax the national bank. Marshall said: (1) Congress can create a bank even without explicit constitutional authority. (2) "The power to tax involves the power to destroy" — states can't destroy federal institutions.<br>
+        <div class="mnemonic"><strong>McCulloch = Must Comply:</strong> States must comply with federal supremacy.</div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="schenck united states 1919 free speech clear present danger war wwi draft">
+      <div class="principle-tag">Free Speech Limits</div>
+      <div class="card-title">Schenck v. United States <span style="font-family:'DM Mono';font-size:11px;color:var(--text-muted);font-weight:300;"> · 1919</span></div>
+      <div class="card-body" style="margin-top:6px;">Free speech can be limited if it creates a <strong>"clear and present danger."</strong> Distributing anti-draft leaflets during WWI wasn't protected.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Story &amp; mnemonic</button>
+      <div class="extra">
+        <strong>Key concept:</strong> Speech isn't absolute. "Shouting fire in a crowded theater." Context matters — wartime raises the stakes. Later modified by Brandenburg (danger must be <em>imminent</em>).<br>
+        <div class="mnemonic"><strong>Schenck = "Shhh!"</strong> Sometimes you have to be quiet (speech has limits).</div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="brown board education 1954 equal protection segregation 14th amendment plessy">
+      <div class="principle-tag">Equal Protection (14th Amendment)</div>
+      <div class="card-title">Brown v. Board of Education <span style="font-family:'DM Mono';font-size:11px;color:var(--text-muted);font-weight:300;"> · 1954</span></div>
+      <div class="card-body" style="margin-top:6px;">Racial segregation in public schools is unconstitutional. <strong>"Separate but equal" is inherently unequal.</strong> Overturned Plessy v. Ferguson (1896).</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Story &amp; mnemonic</button>
+      <div class="extra">
+        <strong>Why it matters:</strong> Overturned 58 years of Plessy. Unanimous Warren Court decision. Used Equal Protection Clause, not Due Process. Led to desegregation orders nationwide.<br>
+        <div class="mnemonic"><strong>Brown BUSTED the "separate but equal" myth.</strong></div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="baker carr 1962 one person one vote reapportionment equal protection districts">
+      <div class="principle-tag">One Person, One Vote</div>
+      <div class="card-title">Baker v. Carr <span style="font-family:'DM Mono';font-size:11px;color:var(--text-muted);font-weight:300;"> · 1962</span></div>
+      <div class="card-body" style="margin-top:6px;">Federal courts CAN hear cases about legislative apportionment. Paved the way for <strong>"one person, one vote."</strong></div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Story &amp; mnemonic</button>
+      <div class="extra">
+        <strong>Simple story:</strong> Tennessee hadn't redrawn districts in 60 years, so rural voters had way more power per person than city voters. Court said this is a justiciable (court-worthy) issue — not a political question.<br>
+        <div class="mnemonic"><strong>Baker BAKES equal slices</strong> — every vote should be the same size.</div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="engel vitale 1962 establishment clause school prayer first amendment religion">
+      <div class="principle-tag">Establishment Clause</div>
+      <div class="card-title">Engel v. Vitale <span style="font-family:'DM Mono';font-size:11px;color:var(--text-muted);font-weight:300;"> · 1962</span></div>
+      <div class="card-body" style="margin-top:6px;">Government-sponsored prayer in public schools violates the <strong>Establishment Clause</strong>, even if the prayer is voluntary and non-denominational.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Story &amp; mnemonic</button>
+      <div class="extra">
+        <strong>Simple story:</strong> New York schools had a short, voluntary prayer. Supreme Court said it doesn't matter — government writing and sponsoring ANY prayer = establishment of religion.<br>
+        <div class="mnemonic"><strong>Engel = End the prayer:</strong> Government can't write school prayers.</div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="gideon wainwright 1963 right to counsel sixth amendment attorney public defender">
+      <div class="principle-tag">Right to Counsel (6th Amendment)</div>
+      <div class="card-title">Gideon v. Wainwright <span style="font-family:'DM Mono';font-size:11px;color:var(--text-muted);font-weight:300;"> · 1963</span></div>
+      <div class="card-body" style="margin-top:6px;">Every criminal defendant has the right to an attorney. If they can't afford one, <strong>the state must provide one.</strong></div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Story &amp; mnemonic</button>
+      <div class="extra">
+        <strong>Simple story:</strong> Gideon was accused of breaking into a pool hall, was too poor to hire a lawyer, represented himself, and lost. Unanimous Supreme Court said: 6th Amendment applies to states via 14th Amendment.<br>
+        <div class="mnemonic"><strong>Gideon Gets a lawyer</strong> — even if broke, you get one.</div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="tinker des moines 1969 symbolic speech first amendment armband vietnam protest students">
+      <div class="principle-tag">Symbolic Speech (1st Amendment)</div>
+      <div class="card-title">Tinker v. Des Moines <span style="font-family:'DM Mono';font-size:11px;color:var(--text-muted);font-weight:300;"> · 1969</span></div>
+      <div class="card-body" style="margin-top:6px;">Students don't "shed their constitutional rights at the schoolhouse gate." Wearing black armbands to protest Vietnam = <strong>protected symbolic speech.</strong></div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Story &amp; mnemonic</button>
+      <div class="extra">
+        <strong>Key limit:</strong> Schools CAN restrict speech that causes "substantial disruption." Armbands were silent and passive — not disruptive. Know the <em>substantial disruption test.</em><br>
+        <div class="mnemonic"><strong>Tinker = Think</strong> (free thought &amp; expression in school).</div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="new york times united states 1971 prior restraint freedom press pentagon papers censorship">
+      <div class="principle-tag">Freedom of Press / Prior Restraint</div>
+      <div class="card-title">New York Times Co. v. United States <span style="font-family:'DM Mono';font-size:11px;color:var(--text-muted);font-weight:300;"> · 1971</span></div>
+      <div class="card-body" style="margin-top:6px;">Government cannot use <strong>prior restraint</strong> (censorship before publication) to stop newspapers from printing the Pentagon Papers.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Story &amp; mnemonic</button>
+      <div class="extra">
+        <strong>Simple story:</strong> NYT got leaked secret Vietnam War documents. Nixon tried to stop publication. Court said: government faces a very heavy burden to justify prior restraint — and didn't meet it here.<br>
+        <div class="mnemonic"><strong>NYT = No Yielding to censorship.</strong></div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="wisconsin yoder 1972 free exercise religion amish school compulsory">
+      <div class="principle-tag">Free Exercise Clause</div>
+      <div class="card-title">Wisconsin v. Yoder <span style="font-family:'DM Mono';font-size:11px;color:var(--text-muted);font-weight:300;"> · 1972</span></div>
+      <div class="card-body" style="margin-top:6px;">Amish families cannot be forced to send children to school past 8th grade. <strong>Free Exercise Clause</strong> protects sincere religious practice.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Story &amp; mnemonic</button>
+      <div class="extra">
+        <strong>Key balance:</strong> State's interest in education vs. family's religious freedom. Court sided with religion — the Amish community had a deeply sincere, centuries-old practice that state schooling would destroy.<br>
+        <div class="mnemonic"><strong>Yoder = Your religion, Your rules (mostly).</strong></div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="roe wade 1973 right to privacy abortion due process 14th amendment dobbs">
+      <div class="principle-tag">Right to Privacy (Due Process)</div>
+      <div class="card-title">Roe v. Wade <span style="font-family:'DM Mono';font-size:11px;color:var(--text-muted);font-weight:300;"> · 1973 · Overturned 2022</span></div>
+      <div class="card-body" style="margin-top:6px;">Constitution's implied right to privacy protects abortion rights. <strong>Overturned by Dobbs v. Jackson (2022)</strong> — still on AP Gov required list.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Story &amp; mnemonic</button>
+      <div class="extra">
+        <strong>Exam note:</strong> Even though Roe was overturned, know the original holding AND that it was overturned by Dobbs. Know the key concept: "penumbras" of the Bill of Rights create an implied right to privacy (from Griswold v. Connecticut).<br>
+        <div class="mnemonic"><strong>Roe = Right of privacy (for now).</strong></div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="shaw reno 1993 redistricting race equal protection gerrymandering voting rights">
+      <div class="principle-tag">Redistricting &amp; Equal Protection</div>
+      <div class="card-title">Shaw v. Reno <span style="font-family:'DM Mono';font-size:11px;color:var(--text-muted);font-weight:300;"> · 1993</span></div>
+      <div class="card-body" style="margin-top:6px;">Race cannot be the <strong>predominant factor</strong> in drawing congressional districts. Racial gerrymandering violates Equal Protection even with good intentions.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Story &amp; mnemonic</button>
+      <div class="extra">
+        <strong>Simple story:</strong> NC drew an oddly-shaped district to create a majority-Black district. Court said drawing lines purely by race = constitutionally suspect, even if motivated by representation goals.<br>
+        <div class="mnemonic"><strong>Shaw = Shape matters</strong> (can't use race to draw weird shapes).</div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="united states lopez 1995 commerce clause gun schools federalism 10th amendment">
+      <div class="principle-tag">Commerce Clause / Federalism</div>
+      <div class="card-title">United States v. Lopez <span style="font-family:'DM Mono';font-size:11px;color:var(--text-muted);font-weight:300;"> · 1995</span></div>
+      <div class="card-body" style="margin-top:6px;">Congress cannot use the Commerce Clause to ban guns in school zones. That's <strong>not economic activity</strong> — it's a local matter. Landmark federalism case.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Story &amp; mnemonic</button>
+      <div class="extra">
+        <strong>Why it matters:</strong> For 60+ years, Congress used Commerce Clause to regulate nearly everything. Lopez said: there are limits. Federal power can't reach purely local, non-economic activity.<br>
+        <div class="mnemonic"><strong>Lopez = Limits on Congress.</strong></div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="mcdonald chicago 2010 second amendment right bear arms incorporation 14th states">
+      <div class="principle-tag">2nd Amendment / Incorporation</div>
+      <div class="card-title">McDonald v. Chicago <span style="font-family:'DM Mono';font-size:11px;color:var(--text-muted);font-weight:300;"> · 2010</span></div>
+      <div class="card-body" style="margin-top:6px;">The 2nd Amendment right to bear arms applies to <strong>state and local governments</strong>, not just the federal government (via 14th Amendment incorporation).</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Story &amp; mnemonic</button>
+      <div class="extra">
+        <strong>Background:</strong> Heller (2008) said 2nd Amendment protects individual gun ownership federally. McDonald extended that protection to states via incorporation doctrine.<br>
+        <div class="mnemonic"><strong>McDonald = Makes 2nd Amendment apply everywhere</strong> (like McDonald's is everywhere).</div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="citizens united fec 2010 campaign finance first amendment corporations super pac money speech">
+      <div class="principle-tag">Campaign Finance / Free Speech</div>
+      <div class="card-title">Citizens United v. FEC <span style="font-family:'DM Mono';font-size:11px;color:var(--text-muted);font-weight:300;"> · 2010</span></div>
+      <div class="card-body" style="margin-top:6px;">Corporations and unions have 1st Amendment rights. Government cannot limit their <strong>independent political expenditures.</strong> Led to rise of Super PACs.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Story &amp; mnemonic</button>
+      <div class="extra">
+        <strong>Key holding:</strong> "Money = speech" for political spending. But direct donations to campaigns still regulated. Massive controversy — opened door to unlimited outside spending in elections.<br>
+        <div class="mnemonic"><strong>Citizens United = Cash Unlimited.</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AMENDMENTS -->
+  <section id="amends" class="section">
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:4px;">Tap any card to expand. <span style="color:var(--gold);">★</span> = high-yield for AP exam.</p>
+
+    <div class="amend-section-title">Bill of Rights — Amendments 1–10</div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div>
+          <div class="badge badge-high">★ Very High Yield</div>
+          <div class="card-title">1st Amendment — RAPPS</div>
+        </div>
+        <div style="font-family:'Playfair Display';font-size:28px;color:var(--gold);opacity:0.3;line-height:1;">1</div>
+      </div>
+      <div class="card-body" style="margin-top:8px;"><strong>R</strong>eligion · <strong>A</strong>ssembly · <strong>P</strong>ress · <strong>P</strong>etition · <strong>S</strong>peech — the five freedoms. Most tested amendment.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Expand</button>
+      <div class="extra">
+        Two religion clauses: <em>Establishment Clause</em> (gov can't promote religion) + <em>Free Exercise Clause</em> (gov can't stop your practice).<br><br>
+        <strong>Key cases:</strong> Engel (Establishment), Yoder (Free Exercise), Tinker (Speech), NYT v. US (Press), Citizens United (Speech).<br>
+        <div class="mnemonic"><strong>RAPPS:</strong> Religion, Assembly, Press, Petition, Speech</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div>
+          <div class="badge badge-high">★ High Yield</div>
+          <div class="card-title">2nd Amendment — Right to Bear Arms</div>
+        </div>
+        <div style="font-family:'Playfair Display';font-size:28px;color:var(--gold);opacity:0.3;line-height:1;">2</div>
+      </div>
+      <div class="card-body" style="margin-top:8px;">Individual right to keep and bear arms (Heller). Applies to states per <strong>McDonald v. Chicago.</strong></div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div>
+          <div class="badge badge-high">★ High Yield</div>
+          <div class="card-title">4th Amendment — Search &amp; Seizure</div>
+        </div>
+        <div style="font-family:'Playfair Display';font-size:28px;color:var(--gold);opacity:0.3;line-height:1;">4</div>
+      </div>
+      <div class="card-body" style="margin-top:8px;">Police need a <strong>warrant based on probable cause</strong> to search you or your property. Protects against unreasonable searches and seizures.</div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div>
+          <div class="badge badge-high">★ High Yield</div>
+          <div class="card-title">5th Amendment — Due Process &amp; Self-Incrimination</div>
+        </div>
+        <div style="font-family:'Playfair Display';font-size:28px;color:var(--gold);opacity:0.3;line-height:1;">5</div>
+      </div>
+      <div class="card-body" style="margin-top:8px;">You cannot be forced to testify against yourself. Government must follow <strong>due process</strong> before depriving you of life, liberty, or property. No double jeopardy.</div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div>
+          <div class="badge badge-amend">Know It</div>
+          <div class="card-title">6th Amendment — Right to Counsel</div>
+        </div>
+        <div style="font-family:'Playfair Display';font-size:28px;color:var(--gold);opacity:0.3;line-height:1;">6</div>
+      </div>
+      <div class="card-body" style="margin-top:8px;">Right to an attorney (Gideon), speedy and public trial, impartial jury, and to know the charges against you.</div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div>
+          <div class="badge badge-high">★ High Yield</div>
+          <div class="card-title">10th Amendment — Reserved Powers</div>
+        </div>
+        <div style="font-family:'Playfair Display';font-size:28px;color:var(--gold);opacity:0.3;line-height:1;">10</div>
+      </div>
+      <div class="card-body" style="margin-top:8px;">Powers not given to the federal government are <strong>reserved to the states or the people.</strong> Foundation of federalism.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Expand</button>
+      <div class="extra">
+        Key in US v. Lopez — Court used states' reserved powers to limit federal Commerce Clause reach. Connects to Brutus 1's argument for state sovereignty.<br>
+        <div class="mnemonic"><strong>10th = TENS of powers go to States.</strong></div>
+      </div>
+    </div>
+
+    <div class="amend-section-title">Civil Rights Amendments — 13, 14, 15</div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div>
+          <div class="badge badge-case">Civil Rights</div>
+          <div class="card-title">13th Amendment — Abolished Slavery</div>
+        </div>
+        <div style="font-family:'Playfair Display';font-size:28px;color:var(--gold);opacity:0.3;line-height:1;">13</div>
+      </div>
+      <div class="card-body" style="margin-top:8px;">Slavery and involuntary servitude are abolished. Exception: punishment for crime. Ratified 1865 after the Civil War.</div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div>
+          <div class="badge badge-high">★ VERY High Yield</div>
+          <div class="card-title">14th Amendment — Equal Protection</div>
+        </div>
+        <div style="font-family:'Playfair Display';font-size:28px;color:var(--gold);opacity:0.3;line-height:1;">14</div>
+      </div>
+      <div class="card-body" style="margin-top:8px;">All born in the US are citizens. States must provide <strong>equal protection and due process.</strong> Used to incorporate Bill of Rights to states.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Expand</button>
+      <div class="extra">
+        Three key clauses: <em>Citizenship</em> (born here = citizen), <em>Due Process</em> (states must be fair), <em>Equal Protection</em> (no discrimination).<br><br>
+        <strong>Used in:</strong> Brown v. Board, Gideon, McDonald, Baker v. Carr, Shaw v. Reno — virtually every civil rights &amp; incorporation case.<br>
+        <div class="mnemonic"><strong>14th = 14-karat GOLD of amendments</strong> — the most used amendment ever.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div>
+          <div class="badge badge-case">Civil Rights</div>
+          <div class="card-title">15th Amendment — Voting Rights for Black Men</div>
+        </div>
+        <div style="font-family:'Playfair Display';font-size:28px;color:var(--gold);opacity:0.3;line-height:1;">15</div>
+      </div>
+      <div class="card-body" style="margin-top:8px;">Cannot deny the vote based on <strong>race, color, or previous servitude.</strong> Ratified 1870. Poll taxes and literacy tests still suppressed Black votes for decades after.</div>
+    </div>
+
+    <div class="amend-section-title">Voting &amp; Structure Amendments</div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div>
+          <div class="badge badge-high">★ High Yield</div>
+          <div class="card-title">17th — Direct Election of Senators</div>
+        </div>
+        <div style="font-family:'Playfair Display';font-size:28px;color:var(--gold);opacity:0.3;line-height:1;">17</div>
+      </div>
+      <div class="card-body" style="margin-top:8px;">Before 1913: state legislatures chose senators. After 17th: <strong>voters directly elect senators.</strong> Made Senate more democratic and responsive.</div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div>
+          <div class="badge badge-high">★ High Yield</div>
+          <div class="card-title">19th — Women's Suffrage</div>
+        </div>
+        <div style="font-family:'Playfair Display';font-size:28px;color:var(--gold);opacity:0.3;line-height:1;">19</div>
+      </div>
+      <div class="card-body" style="margin-top:8px;">Cannot deny the vote based on sex. Ratified <strong>1920</strong> after decades of suffragist activism.</div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div>
+          <div class="badge badge-high">★ High Yield</div>
+          <div class="card-title">22nd — Presidential Term Limits</div>
+        </div>
+        <div style="font-family:'Playfair Display';font-size:28px;color:var(--gold);opacity:0.3;line-height:1;">22</div>
+      </div>
+      <div class="card-body" style="margin-top:8px;">No president can serve more than <strong>2 terms.</strong> Passed after FDR served 4 terms. Ratified 1951.</div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div>
+          <div class="badge badge-high">★ High Yield</div>
+          <div class="card-title">24th — Poll Tax Banned</div>
+        </div>
+        <div style="font-family:'Playfair Display';font-size:28px;color:var(--gold);opacity:0.3;line-height:1;">24</div>
+      </div>
+      <div class="card-body" style="margin-top:8px;">Cannot require payment to vote in federal elections. Eliminated a major tool used to <strong>suppress Black voting</strong> in the South. Ratified 1964.</div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div>
+          <div class="badge badge-high">★ High Yield</div>
+          <div class="card-title">26th — Voting Age Lowered to 18</div>
+        </div>
+        <div style="font-family:'Playfair Display';font-size:28px;color:var(--gold);opacity:0.3;line-height:1;">26</div>
+      </div>
+      <div class="card-body" style="margin-top:8px;">Lowered voting age from 21 to 18. Ratified <strong>1971</strong> during Vietnam War — if you're old enough to fight, you're old enough to vote.</div>
+    </div>
+  </section>
+
+  <!-- EXAM TIPS -->
+  <section id="tips" class="section">
+
+    <div class="tip-card">
+      <h3>The four FRQ types</h3>
+      <p>
+        <strong>1. SCOTUS Comparison FRQ:</strong> Compare a required case to a non-required one. Identify similarity in facts, then explain how they ruled differently and why.<br><br>
+        <strong>2. Argument Essay:</strong> Write a structured argument using 2+ required cases and/or foundational documents as evidence.<br><br>
+        <strong>3. Concept Application:</strong> Apply a real-world scenario to a political concept (federalism, separation of powers, civil liberties, etc.).<br><br>
+        <strong>4. Quantitative Analysis:</strong> Interpret a chart, graph, or data table and connect findings to a political concept.
+      </p>
+    </div>
+
+    <div class="tip-card">
+      <h3>Document connections cheat sheet</h3>
+      <div class="connection">
+        <div class="connection-arrow">↔</div>
+        <div class="connection-text"><strong>Federalist 10 vs. Brutus 1:</strong> Both about large republics — Madison says safer, Brutus says dangerous. Classic exam comparison.</div>
+      </div>
+      <div class="connection">
+        <div class="connection-arrow">→</div>
+        <div class="connection-text"><strong>Federalist 51 + Constitution:</strong> Both explain separation of powers and why checks &amp; balances protect liberty.</div>
+      </div>
+      <div class="connection">
+        <div class="connection-arrow">→</div>
+        <div class="connection-text"><strong>Federalist 78 + Marbury v. Madison:</strong> Hamilton predicted judicial review; Marbury established it in practice.</div>
+      </div>
+      <div class="connection">
+        <div class="connection-arrow">↔</div>
+        <div class="connection-text"><strong>Letter from Birmingham Jail + Declaration of Independence:</strong> Both invoke natural/moral law to justify action against unjust authority.</div>
+      </div>
+      <div class="connection">
+        <div class="connection-arrow">→</div>
+        <div class="connection-text"><strong>Articles of Confederation → Constitution:</strong> The Articles' failures directly explain every feature of the Constitution that replaced it.</div>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <h3>Federalism in one paragraph</h3>
+      <p>
+        Federalism = power split between national and state governments. <strong>Expressed powers</strong> = written in Constitution. <strong>Implied powers</strong> = Necessary &amp; Proper Clause (McCulloch). <strong>Reserved powers</strong> = 10th Amendment (states). <strong>Concurrent powers</strong> = shared (taxing, courts). <strong>Supremacy Clause</strong> = federal law wins conflicts. Key cases: McCulloch (fed power), Lopez (fed limits), McDonald (incorporation).
+      </p>
+    </div>
+
+    <div class="tip-card">
+      <h3>Civil liberties vs. civil rights</h3>
+      <p>
+        <strong>Civil liberties</strong> = protections FROM government action (1st, 4th, 5th, 6th Amendment rights).<br>
+        <strong>Civil rights</strong> = equal treatment BY government (14th Amendment, Voting Rights Act, Brown v. Board).<br><br>
+        Easy memory: <em>Liberties = freedom from. Rights = equal treatment.</em>
+      </p>
+    </div>
+
+    <div class="tip-card">
+      <h3>Incorporation doctrine</h3>
+      <p>
+        The 14th Amendment's Due Process Clause has been used to "incorporate" (apply) most Bill of Rights protections to state governments — not just the federal government. This is how Gideon (6th), McDonald (2nd), and Engel (1st) all apply to state laws. Not all amendments are incorporated — the 3rd and 7th largely are not.
+      </p>
+    </div>
+
+    <div class="tip-card">
+      <h3>MCQ strategy</h3>
+      <p>
+        1. Read the stimulus (chart, quote, scenario) carefully first — the answer is almost always in it.<br>
+        2. Look for key words: "primarily," "most likely," "best explains."<br>
+        3. For document questions — recall the author and core argument before looking at choices.<br>
+        4. For court cases — know the <em>constitutional clause</em>, not just the ruling.<br>
+        5. Eliminate answers that are factually wrong about the document or case, even if they sound reasonable.
+      </p>
+    </div>
+  </section>
+
+  <!-- NUMBERS & RATIOS -->
+  <section id="numbers" class="section">
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">Every critical number, ratio, threshold, and count you need for the AP Gov exam.</p>
+
+    <!-- BIG NUMBER GRID -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px;">
+      <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:18px;text-align:center;backdrop-filter:blur(12px);">
+        <div style="font-family:'Playfair Display';font-size:40px;font-weight:700;color:var(--gold);line-height:1;">270</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:6px;letter-spacing:.5px;">Electoral votes to win presidency</div>
+        <div style="font-size:11px;color:#4ec9c0;margin-top:4px;">out of 538 total</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:18px;text-align:center;backdrop-filter:blur(12px);">
+        <div style="font-family:'Playfair Display';font-size:40px;font-weight:700;color:var(--gold);line-height:1;">60</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:6px;letter-spacing:.5px;">Senate votes for cloture</div>
+        <div style="font-size:11px;color:#4ec9c0;margin-top:4px;">3/5 of 100 senators</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:18px;text-align:center;backdrop-filter:blur(12px);">
+        <div style="font-family:'Playfair Display';font-size:40px;font-weight:700;color:var(--gold);line-height:1;">2/3</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:6px;letter-spacing:.5px;">Congress vote to propose amendment</div>
+        <div style="font-size:11px;color:#4ec9c0;margin-top:4px;">both House &amp; Senate</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:18px;text-align:center;backdrop-filter:blur(12px);">
+        <div style="font-family:'Playfair Display';font-size:40px;font-weight:700;color:var(--gold);line-height:1;">3/4</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:6px;letter-spacing:.5px;">States needed to ratify amendment</div>
+        <div style="font-size:11px;color:#4ec9c0;margin-top:4px;">38 of 50 states</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:18px;text-align:center;backdrop-filter:blur(12px);">
+        <div style="font-family:'Playfair Display';font-size:40px;font-weight:700;color:var(--gold);line-height:1;">9</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:6px;letter-spacing:.5px;">Supreme Court justices</div>
+        <div style="font-size:11px;color:#4ec9c0;margin-top:4px;">5 needed for majority ruling</div>
+      </div>
+      <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:18px;text-align:center;backdrop-filter:blur(12px);">
+        <div style="font-family:'Playfair Display';font-size:40px;font-weight:700;color:var(--gold);line-height:1;">2/3</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:6px;letter-spacing:.5px;">Senate vote to remove president</div>
+        <div style="font-size:11px;color:#4ec9c0;margin-top:4px;">after House impeaches (simple majority)</div>
+      </div>
+    </div>
+
+    <div class="amend-section-title">Congress — Structure &amp; Composition</div>
+
+    <div class="card">
+      <div class="card-title">House of Representatives</div>
+      <div class="card-body" style="margin-top:8px;">
+        <strong>435</strong> total members · Seats based on <strong>population</strong> (reapportioned every 10 years after census) · Term = <strong>2 years</strong> · Must be at least <strong>25 years old</strong>, 7 years a citizen · All revenue bills must originate here · Impeaches by <strong>simple majority</strong>
+      </div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ More numbers</button>
+      <div class="extra">
+        <strong>218 votes</strong> = simple majority needed to pass a bill or impeach<br>
+        <strong>290 votes</strong> = 2/3 majority needed to override a presidential veto<br>
+        <strong>Speaker of the House</strong> = 2nd in line to presidency (after VP)<br>
+        <strong>Largest state delegation:</strong> California (currently ~52 seats)
+        <div class="mnemonic"><strong>House = H for Hot-tempered &amp; fast:</strong> 2-year terms, closest to the people, starts revenue bills.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Senate</div>
+      <div class="card-body" style="margin-top:8px;">
+        <strong>100</strong> total members · <strong>2 per state</strong> regardless of population · Term = <strong>6 years</strong> (staggered — 1/3 up for election every 2 years) · Must be at least <strong>30 years old</strong>, 9 years a citizen · Confirms appointments, ratifies treaties
+      </div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ More numbers</button>
+      <div class="extra">
+        <strong>51 votes</strong> = simple majority to pass a bill or confirm a nominee<br>
+        <strong>60 votes</strong> = cloture (ending a filibuster) — 3/5 of all senators<br>
+        <strong>67 votes</strong> = 2/3 to ratify a treaty or convict/remove a president<br>
+        <strong>VP</strong> = President of the Senate, votes only to break ties<br>
+        <strong>Filibuster:</strong> unlimited debate tactic — only the Senate has it
+        <div class="mnemonic"><strong>"Senate = Slow &amp; Serious":</strong> 6-year terms, older age req, more deliberate body.</div>
+      </div>
+    </div>
+
+    <div class="amend-section-title">Constitutional Thresholds</div>
+
+    <div class="card">
+      <div class="card-title">Amendment Process — Two Paths</div>
+      <div class="card-body" style="margin-top:8px;">
+        <strong>Path 1 (used for all 27 amendments):</strong> 2/3 of both House &amp; Senate propose → 3/4 of state legislatures ratify (38 states)<br><br>
+        <strong>Path 2 (never used):</strong> 2/3 of state legislatures call a convention → 3/4 of states ratify
+      </div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Key detail</button>
+      <div class="extra">
+        The president has <strong>no role</strong> in amending the Constitution — no signature required. Congress proposes, states ratify.<br><br>
+        Under the Articles of Confederation, amendment required <strong>unanimous consent</strong> of all 13 states — one reason the Articles failed.
+        <div class="mnemonic"><strong>"2/3 propose, 3/4 ratify"</strong> — the two fractions you must remember.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Presidential Veto &amp; Override</div>
+      <div class="card-body" style="margin-top:8px;">
+        President has <strong>10 days</strong> to sign or veto a bill · <strong>2/3 of both chambers</strong> can override a veto · <strong>Pocket veto</strong>: if Congress adjourns within 10 days and president doesn't sign, bill dies
+      </div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ More detail</button>
+      <div class="extra">
+        Override requires <strong>290 votes in House</strong> (2/3 of 435) + <strong>67 votes in Senate</strong> (2/3 of 100).<br><br>
+        Overrides are extremely rare — most vetoes are sustained because it's very hard to get 2/3 of both chambers to agree.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Impeachment Process</div>
+      <div class="card-body" style="margin-top:8px;">
+        <strong>Step 1 — House:</strong> Simple majority (218+) votes to impeach (formally charge)<br>
+        <strong>Step 2 — Senate:</strong> 2/3 majority (67+) votes to convict and remove from office<br>
+        Chief Justice presides over presidential impeachment trial
+      </div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Historical context</button>
+      <div class="extra">
+        Presidents impeached by House: Andrew Johnson (1868), Bill Clinton (1998), Donald Trump (2019, 2021) — <strong>none were removed</strong> by the Senate.<br><br>
+        Richard Nixon resigned before the House voted.
+        <div class="mnemonic"><strong>"House charges, Senate judges"</strong> — like a grand jury vs. a trial jury.</div>
+      </div>
+    </div>
+
+    <div class="amend-section-title">Electoral College &amp; Elections</div>
+
+    <div class="card">
+      <div class="card-title">Electoral College Breakdown</div>
+      <div class="card-body" style="margin-top:8px;">
+        <strong>538</strong> total electoral votes · <strong>270</strong> needed to win · Each state gets electors = House seats + 2 Senate seats · DC gets <strong>3</strong> electors (23rd Amendment)
+      </div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ More detail</button>
+      <div class="extra">
+        <strong>Winner-take-all:</strong> 48 states award ALL electors to the popular vote winner in that state.<br>
+        <strong>Exceptions:</strong> Maine and Nebraska use proportional/congressional district method.<br><br>
+        <strong>If no one reaches 270:</strong> House chooses president (each state delegation gets 1 vote), Senate chooses VP — called a <em>contingent election.</em><br><br>
+        <strong>Faithless electors:</strong> electors who don't vote for their pledged candidate — rare and most states now have laws against it.
+        <div class="mnemonic"><strong>"538 ÷ 2 + 1 = 270"</strong> — majority of the total.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Presidential Requirements &amp; Term</div>
+      <div class="card-body" style="margin-top:8px;">
+        Must be <strong>35 years old</strong> · Must be a <strong>natural-born citizen</strong> · Must have been a <strong>14-year U.S. resident</strong> · Term = <strong>4 years</strong> · Max = <strong>2 terms</strong> (22nd Amendment)
+      </div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Succession order</button>
+      <div class="extra">
+        <strong>Presidential succession order:</strong> VP → Speaker of the House → President Pro Tempore of the Senate → Secretary of State → ...<br><br>
+        A president can serve a max of <strong>10 years</strong> total — 2 full terms plus up to 2 years finishing a predecessor's term.
+      </div>
+    </div>
+
+    <div class="amend-section-title">Supreme Court &amp; Federal Judiciary</div>
+
+    <div class="card">
+      <div class="card-title">Supreme Court Numbers</div>
+      <div class="card-body" style="margin-top:8px;">
+        <strong>9</strong> total justices · <strong>1</strong> Chief Justice + <strong>8</strong> Associate Justices · <strong>5</strong> votes needed for a majority ruling · <strong>4</strong> votes needed to grant <em>certiorari</em> (agree to hear a case) — the "Rule of Four"
+      </div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ More detail</button>
+      <div class="extra">
+        Justices serve <strong>lifetime tenure</strong> ("during good behavior") — per Federalist 78.<br><br>
+        The Court receives ~7,000–8,000 cert petitions per year but only hears about <strong>60–80 cases</strong>.<br><br>
+        <strong>Unanimous decisions (9-0)</strong> carry the most weight. <strong>5-4 decisions</strong> are the most controversial and most likely to be revisited.<br><br>
+        <strong>No set number</strong> of justices required by the Constitution — Congress sets it by law (has ranged from 5 to 10 historically).
+        <div class="mnemonic"><strong>"Rule of Four to hear, Five to decide"</strong></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Federal Court Levels</div>
+      <div class="card-body" style="margin-top:8px;">
+        <strong>3 levels:</strong> District Courts (94 total) → Courts of Appeals/Circuit Courts (13 total) → Supreme Court (1)<br><br>
+        All federal judges appointed by president, confirmed by <strong>Senate simple majority</strong> (51 votes), serve lifetime tenure.
+      </div>
+    </div>
+
+    <div class="amend-section-title">Key Fractions &amp; Vote Thresholds — Quick Reference</div>
+
+    <div class="card">
+      <div class="card-body" style="line-height:2.2;font-size:13.5px;">
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:4px 16px;align-items:baseline;">
+          <span style="font-family:'DM Mono';color:var(--gold);font-size:15px;">Simple majority</span><span style="color:#b8cad8;">Pass a bill in either chamber; impeach (House); confirm nominees (Senate)</span>
+          <span style="font-family:'DM Mono';color:var(--gold);font-size:15px;">3/5 (60 Senate)</span><span style="color:#b8cad8;">Invoke cloture to end a Senate filibuster</span>
+          <span style="font-family:'DM Mono';color:var(--gold);font-size:15px;">2/3 (both chambers)</span><span style="color:#b8cad8;">Override presidential veto; propose constitutional amendment</span>
+          <span style="font-family:'DM Mono';color:var(--gold);font-size:15px;">2/3 (Senate only)</span><span style="color:#b8cad8;">Ratify a treaty; convict/remove president or official</span>
+          <span style="font-family:'DM Mono';color:var(--gold);font-size:15px;">3/4 (38 states)</span><span style="color:#b8cad8;">Ratify a constitutional amendment</span>
+          <span style="font-family:'DM Mono';color:var(--gold);font-size:15px;">270 / 538</span><span style="color:#b8cad8;">Win the presidency via Electoral College</span>
+          <span style="font-family:'DM Mono';color:var(--gold);font-size:15px;">4 / 9 justices</span><span style="color:#b8cad8;">Grant certiorari (Rule of Four) to hear a SCOTUS case</span>
+          <span style="font-family:'DM Mono';color:var(--gold);font-size:15px;">5 / 9 justices</span><span style="color:#b8cad8;">Majority ruling on a Supreme Court case</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="amend-section-title">Other Key Numbers to Know</div>
+
+    <div class="card">
+      <div class="card-title">Terms, Lengths &amp; Ages</div>
+      <div class="card-body" style="margin-top:8px;line-height:2.1;font-size:13.5px;">
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:4px 16px;">
+          <span style="font-family:'DM Mono';color:var(--gold);">2 years</span><span style="color:#b8cad8;">House of Representatives term</span>
+          <span style="font-family:'DM Mono';color:var(--gold);">4 years</span><span style="color:#b8cad8;">Presidential term (max 2 terms per 22nd Amendment)</span>
+          <span style="font-family:'DM Mono';color:var(--gold);">6 years</span><span style="color:#b8cad8;">Senate term (1/3 up for election every 2 years)</span>
+          <span style="font-family:'DM Mono';color:var(--gold);">Lifetime</span><span style="color:#b8cad8;">Federal judge / Supreme Court justice tenure</span>
+          <span style="font-family:'DM Mono';color:var(--gold);">Age 18</span><span style="color:#b8cad8;">Voting age (26th Amendment, 1971)</span>
+          <span style="font-family:'DM Mono';color:var(--gold);">Age 25</span><span style="color:#b8cad8;">Minimum age for House member</span>
+          <span style="font-family:'DM Mono';color:var(--gold);">Age 30</span><span style="color:#b8cad8;">Minimum age for Senator</span>
+          <span style="font-family:'DM Mono';color:var(--gold);">Age 35</span><span style="color:#b8cad8;">Minimum age for President</span>
+          <span style="font-family:'DM Mono';color:var(--gold);">10 years</span><span style="color:#b8cad8;">Census cycle — triggers reapportionment of House seats</span>
+          <span style="font-family:'DM Mono';color:var(--gold);">10 days</span><span style="color:#b8cad8;">President has this long to sign or veto a bill</span>
+          <span style="font-family:'DM Mono';color:var(--gold);">27</span><span style="color:#b8cad8;">Total amendments to the Constitution</span>
+          <span style="font-family:'DM Mono';color:var(--gold);">435 + 100</span><span style="color:#b8cad8;">House + Senate = 535 total members of Congress</span>
+          <span style="font-family:'DM Mono';color:var(--gold);">50 states</span><span style="color:#b8cad8;">Each gets 2 senators + at least 1 House rep</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" class="section">
+
+    <!-- Streak & Mascot HUD -->
+    <div id="quizHUD" style="display:none;margin-bottom:12px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div id="mascot" style="font-size:32px;line-height:1;transition:transform 0.3s ease;">⚖️</div>
+          <div>
+            <div id="streakDisplay" style="font-family:'DM Mono';font-size:13px;color:var(--gold);letter-spacing:1px;"></div>
+            <div id="comboDisplay" style="font-size:11px;color:#4ec9c0;margin-top:2px;"></div>
+          </div>
+        </div>
+        <div id="timerDisplay" style="display:none;font-family:'Playfair Display';font-size:28px;color:var(--cream);font-weight:700;"></div>
+        <div id="encourageMsg" style="font-size:12px;color:var(--gold-light);font-style:italic;text-align:right;max-width:200px;"></div>
+      </div>
+    </div>
+
+    <!-- Quiz controls -->
+    <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:20px 22px;margin-bottom:20px;backdrop-filter:blur(12px);">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+        <div>
+          <div style="font-family:'Playfair Display';font-size:18px;color:var(--gold);font-style:italic;margin-bottom:4px;">Practice Quiz</div>
+          <div style="font-size:12px;color:var(--text-muted);">AP Gov–style questions drawn from the full study guide</div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <select id="quizCategory" style="padding:8px 12px;background:var(--navy-mid);border:1px solid var(--card-border);border-radius:8px;color:var(--cream);font-family:'DM Sans';font-size:13px;outline:none;">
+            <option value="all">All Topics</option>
+            <option value="docs">Foundational Documents</option>
+            <option value="cases">Supreme Court Cases</option>
+            <option value="amends">Amendments</option>
+            <option value="numbers">Numbers &amp; Ratios</option>
+          </select>
+          <select id="quizCount" style="padding:8px 12px;background:var(--navy-mid);border:1px solid var(--card-border);border-radius:8px;color:var(--cream);font-family:'DM Sans';font-size:13px;outline:none;">
+            <option value="5">5 questions</option>
+            <option value="10" selected>10 questions</option>
+            <option value="15">15 questions</option>
+            <option value="20">20 questions</option>
+            <option value="999">All questions</option>
+          </select>
+          <select id="quizMode" style="padding:8px 12px;background:var(--navy-mid);border:1px solid var(--card-border);border-radius:8px;color:var(--cream);font-family:'DM Sans';font-size:13px;outline:none;">
+            <option value="normal">Normal Mode</option>
+            <option value="speed">⚡ Speed Round (30s)</option>
+            <option value="sudden">💀 Sudden Death</option>
+          </select>
+          <button onclick="startQuiz()" style="padding:8px 18px;background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:var(--navy);border:none;border-radius:8px;font-family:'DM Sans';font-size:13px;font-weight:500;cursor:pointer;">Scramble &amp; Start</button>
+        </div>
+      </div>
+
+      <!-- Score bar -->
+      <div id="scoreBar" style="display:none;margin-top:16px;padding-top:16px;border-top:1px solid rgba(201,168,76,0.12);">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <span style="font-size:13px;color:var(--text-muted);">Progress</span>
+          <span id="scoreText" style="font-family:'DM Mono';font-size:13px;color:var(--gold);">0 / 0 correct</span>
+        </div>
+        <div style="height:6px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden;">
+          <div id="scoreBarFill" style="height:100%;width:0%;background:linear-gradient(90deg,var(--gold-dim),var(--gold));border-radius:3px;transition:width 0.4s ease;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz questions render here -->
+    <div id="quizContainer"></div>
+
+    <!-- Results panel -->
+    <div id="quizResults" style="display:none;background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:28px 24px;text-align:center;backdrop-filter:blur(12px);margin-top:8px;">
+      <div id="apScoreBadge" style="font-family:'DM Mono';font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">AP SCORE EQUIVALENT</div>
+      <div id="apScoreNum" style="font-family:'Playfair Display';font-size:72px;font-weight:700;line-height:1;margin-bottom:4px;"></div>
+      <div id="apScoreLabel" style="font-size:13px;color:var(--text-muted);margin-bottom:16px;"></div>
+      <div style="font-family:'Playfair Display';font-size:32px;font-weight:700;color:var(--gold);" id="resultScore"></div>
+      <div style="font-size:15px;color:var(--text-muted);margin-top:6px;" id="resultMsg"></div>
+      <div style="margin-top:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <button onclick="startQuiz()" style="padding:10px 22px;background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:var(--navy);border:none;border-radius:8px;font-family:'DM Sans';font-size:13px;font-weight:500;cursor:pointer;">Retry with New Scramble</button>
+        <button onclick="reviewMissed()" id="reviewBtn" style="padding:10px 22px;background:transparent;color:var(--gold);border:1px solid var(--gold-dim);border-radius:8px;font-family:'DM Sans';font-size:13px;cursor:pointer;">Review Missed Questions</button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- FLASHCARDS -->
+  <section id="flashcards" class="section">
+    <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:20px 22px;margin-bottom:20px;backdrop-filter:blur(12px);">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+        <div>
+          <div style="font-family:'Playfair Display';font-size:18px;color:var(--gold);font-style:italic;margin-bottom:4px;">Flashcard Mode</div>
+          <div style="font-size:12px;color:var(--text-muted);">Tap to flip · swipe or use arrows to navigate</div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+          <select id="fcCategory" style="padding:8px 12px;background:var(--navy-mid);border:1px solid var(--card-border);border-radius:8px;color:var(--cream);font-family:'DM Sans';font-size:13px;outline:none;">
+            <option value="all">All Topics</option>
+            <option value="docs">Documents</option>
+            <option value="cases">Court Cases</option>
+            <option value="amends">Amendments</option>
+            <option value="numbers">Numbers</option>
+          </select>
+          <button onclick="startFlashcards()" style="padding:8px 18px;background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:var(--navy);border:none;border-radius:8px;font-family:'DM Sans';font-size:13px;font-weight:500;cursor:pointer;">Shuffle &amp; Start</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="fcDeck" style="display:none;">
+      <div style="text-align:center;margin-bottom:12px;">
+        <span id="fcCounter" style="font-family:'DM Mono';font-size:12px;color:var(--text-muted);letter-spacing:1px;"></span>
+      </div>
+
+      <!-- The flashcard -->
+      <div id="fcScene" style="perspective:1200px;margin-bottom:20px;cursor:pointer;" onclick="flipCard()">
+        <div id="fcCardInner" style="position:relative;width:100%;min-height:220px;transition:transform 0.55s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d;">
+          <!-- Front -->
+          <div id="fcFront" style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--card-bg);border:1px solid var(--card-border);border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 28px;text-align:center;backdrop-filter:blur(12px);">
+            <div style="font-family:'DM Mono';font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-dim);margin-bottom:16px;">TERM</div>
+            <div id="fcFrontText" style="font-family:'Playfair Display';font-size:22px;font-weight:700;color:var(--cream);line-height:1.3;"></div>
+            <div style="margin-top:20px;font-size:11px;color:var(--text-muted);">tap to reveal →</div>
+          </div>
+          <!-- Back -->
+          <div id="fcBack" style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg);background:linear-gradient(135deg,rgba(26,47,69,0.95),rgba(36,59,85,0.95));border:1px solid rgba(201,168,76,0.35);border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 28px;text-align:center;backdrop-filter:blur(12px);">
+            <div style="font-family:'DM Mono';font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-dim);margin-bottom:16px;">EXPLANATION</div>
+            <div id="fcBackText" style="font-size:14px;color:#b8cad8;line-height:1.75;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div style="display:flex;gap:10px;justify-content:center;align-items:center;margin-bottom:12px;">
+        <button onclick="fcPrev()" style="padding:10px 22px;background:transparent;color:var(--gold);border:1px solid var(--gold-dim);border-radius:8px;font-family:'DM Sans';font-size:13px;cursor:pointer;">← Prev</button>
+        <button onclick="fcMarkWrong()" style="padding:10px 16px;background:rgba(192,57,43,0.15);color:#e07060;border:1px solid rgba(192,57,43,0.3);border-radius:8px;font-family:'DM Sans';font-size:13px;cursor:pointer;" title="Need more practice">✗ Again</button>
+        <button onclick="fcMarkRight()" style="padding:10px 16px;background:rgba(78,201,192,0.12);color:#4ec9c0;border:1px solid rgba(78,201,192,0.3);border-radius:8px;font-family:'DM Sans';font-size:13px;cursor:pointer;" title="Got it!">✓ Got it</button>
+        <button onclick="fcNext()" style="padding:10px 22px;background:transparent;color:var(--gold);border:1px solid var(--gold-dim);border-radius:8px;font-family:'DM Sans';font-size:13px;cursor:pointer;">Next →</button>
+      </div>
+
+      <div id="fcProgress" style="height:4px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden;">
+        <div id="fcProgressFill" style="height:100%;width:0%;background:linear-gradient(90deg,var(--gold-dim),var(--gold));border-radius:2px;transition:width 0.3s ease;"></div>
+      </div>
+    </div>
+
+    <div id="fcEmpty" style="text-align:center;padding:60px 20px;color:var(--text-muted);">
+      <div style="font-size:40px;margin-bottom:12px;">🃏</div>
+      <div style="font-family:'Playfair Display';font-size:18px;color:var(--cream);margin-bottom:8px;">Ready to flip?</div>
+      <div style="font-size:13px;">Select a topic and hit Shuffle &amp; Start</div>
+    </div>
+  </section>
+
+</div>
+
+<!-- STREAK FLASH OVERLAY -->
+<div id="streakFlash" style="position:fixed;inset:0;pointer-events:none;z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s;">
+  <div id="streakFlashMsg" style="font-family:'Playfair Display';font-size:48px;font-weight:700;color:var(--gold);text-shadow:0 0 40px rgba(201,168,76,0.8);transform:scale(0.5);transition:transform 0.3s ease;"></div>
+</div>
+
+<!-- GOLD GLOW OVERLAY (correct answer flash) -->
+<div id="goldFlash" style="position:fixed;inset:0;pointer-events:none;z-index:9998;background:radial-gradient(ellipse at center, rgba(201,168,76,0.18) 0%, transparent 70%);opacity:0;transition:opacity 0.2s;"></div>
+
+<style>
+  .q-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-bottom: 14px;
+    backdrop-filter: blur(12px);
+    animation: fadeUp 0.4s ease both;
+    transition: border-color 0.2s;
+  }
+  .q-card.correct-card { border-color: rgba(78,201,192,0.6); }
+  .q-card.wrong-card { border-color: rgba(192,57,43,0.6); }
+  .q-card.gold-pulse {
+    animation: goldPulse 0.6s ease;
+  }
+  @keyframes goldPulse {
+    0% { box-shadow: 0 0 0 0 rgba(201,168,76,0); border-color: var(--card-border); }
+    30% { box-shadow: 0 0 28px 8px rgba(201,168,76,0.5); border-color: var(--gold); }
+    100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+  }
+  @keyframes streakPop {
+    0% { transform: scale(0.4); opacity: 0; }
+    60% { transform: scale(1.15); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes mascotPump {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    30% { transform: translateY(-8px) rotate(-8deg); }
+    60% { transform: translateY(-4px) rotate(5deg); }
+  }
+  @keyframes mascotDroop {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(5px) rotate(-15deg); }
+  }
+  .mascot-pump { animation: mascotPump 0.5s ease; }
+  .mascot-droop { animation: mascotDroop 0.5s ease; }
+
+  /* Speed timer pulse */
+  @keyframes timerPulse {
+    0%,100% { color: var(--cream); }
+    50% { color: var(--gold); }
+  }
+  .timer-urgent { animation: timerPulse 0.5s ease infinite; color: #e07060 !important; }
+
+  /* Sudden death banner */
+  .sudden-death-banner {
+    background: rgba(192,57,43,0.15);
+    border: 1px solid rgba(192,57,43,0.4);
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-size: 13px;
+    color: #e07060;
+    text-align: center;
+    margin-bottom: 14px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 1px;
+  }
+
+  /* Flashcard flip */
+  #fcCardInner.flipped { transform: rotateY(180deg); }
+
+  .q-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold-dim);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .q-type-badge {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .qtype-mc { background:rgba(100,130,200,0.15);color:#88aaee;border:1px solid rgba(100,130,200,0.3); }
+  .qtype-tf { background:rgba(201,168,76,0.15);color:var(--gold);border:1px solid rgba(201,168,76,0.3); }
+  .qtype-frq { background:rgba(26,127,116,0.18);color:#4ec9c0;border:1px solid rgba(26,127,116,0.3); }
+
+  .q-stem {
+    font-size: 14.5px;
+    color: var(--cream);
+    line-height: 1.65;
+    margin-bottom: 14px;
+    font-weight: 400;
+  }
+  .q-stem em { color: var(--gold-light); font-style: italic; }
+
+  .q-choices { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+
+  .q-choice {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-size: 13.5px;
+    color: #b8cad8;
+    line-height: 1.5;
+  }
+  .q-choice:hover:not(.locked) { background: rgba(201,168,76,0.06); border-color: rgba(201,168,76,0.3); color: var(--cream); }
+  .q-choice.selected { border-color: var(--gold-dim); background: rgba(201,168,76,0.08); color: var(--cream); }
+  .q-choice.correct-ans { border-color: #4ec9c0; background: rgba(78,201,192,0.1); color: #a8eeea; }
+  .q-choice.wrong-ans { border-color: #c0392b; background: rgba(192,57,43,0.1); color: #e09090; }
+  .q-choice.locked { cursor: default; }
+
+  .choice-letter {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.12);
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .check-btn {
+    padding: 8px 20px;
+    background: transparent;
+    border: 1px solid var(--gold-dim);
+    border-radius: 8px;
+    color: var(--gold);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.3px;
+  }
+  .check-btn:hover { background: rgba(201,168,76,0.1); }
+  .check-btn:disabled { opacity: 0.4; cursor: default; }
+
+  .q-feedback {
+    display: none;
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .q-feedback.correct { background: rgba(78,201,192,0.1); border-left: 3px solid #4ec9c0; color: #a8eeea; }
+  .q-feedback.incorrect { background: rgba(192,57,43,0.1); border-left: 3px solid #c0392b; color: #e09090; }
+  .q-feedback.show { display: block; }
+
+  .frq-input {
+    width: 100%;
+    min-height: 90px;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 9px;
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13.5px;
+    resize: vertical;
+    outline: none;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    transition: border-color 0.2s;
+  }
+  .frq-input:focus { border-color: var(--gold-dim); }
+
+  .frq-rubric {
+    display: none;
+    margin-top: 12px;
+    padding: 12px 14px;
+    background: rgba(201,168,76,0.06);
+    border-left: 3px solid var(--gold-dim);
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    color: #b8cad8;
+    line-height: 1.7;
+  }
+  .frq-rubric.show { display: block; }
+  .frq-rubric strong { color: var(--gold-light); }
+
+  .result-correct { color: #4ec9c0; }
+  .result-wrong { color: #e07060; }
+
+  #submitAll {
+    width: 100%;
+    padding: 14px;
+    margin-top: 6px;
+    background: linear-gradient(135deg,var(--gold-dim),var(--gold));
+    color: var(--navy);
+    border: none;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: opacity 0.2s;
+  }
+  #submitAll:hover { opacity: 0.9; }
+</style>
+
+<script>
+  // ── TAB SWITCHING ──────────────────────────────────────────
+  function switchTab(name, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(name).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  function toggleExtra(btn) {
+    const extra = btn.nextElementSibling;
+    const isOpen = extra.classList.contains('open');
+    extra.classList.toggle('open');
+    btn.textContent = isOpen
+      ? btn.textContent.replace('▴','▾')
+      : btn.textContent.replace('▾','▴');
+  }
+
+  function filterSection(input, sectionId) {
+    const q = input.value.toLowerCase();
+    document.querySelectorAll(`#${sectionId} .card`).forEach(card => {
+      const text = (card.textContent + (card.dataset.keywords || '')).toLowerCase();
+      card.style.display = text.includes(q) ? '' : 'none';
+    });
+  }
+
+  // ── QUESTION BANK ──────────────────────────────────────────
+  const ALL_QUESTIONS = [
+
+    // ── DOCUMENTS ──
+    { cat:'docs', type:'mc',
+      stem: 'Which foundational document argues that a large republic is <em>better</em> at controlling factions than a small one?',
+      choices: ['Brutus No. 1','Federalist No. 10','Federalist No. 51','The Declaration of Independence'],
+      answer: 1,
+      explain: 'Federalist No. 10, written by James Madison, argues that a large republic dilutes the power of any single faction because there are more competing interests.'
+    },
+    { cat:'docs', type:'mc',
+      stem: 'The author of Brutus No. 1 would most likely agree with which of the following statements?',
+      choices: [
+        'A large republic is the best way to prevent tyranny.',
+        'The Necessary and Proper Clause gives Congress too much power.',
+        'A strong central executive is essential to good government.',
+        'Judicial review is necessary to protect individual rights.'
+      ],
+      answer: 1,
+      explain: 'Brutus No. 1 specifically warned that the Necessary and Proper Clause would allow Congress to expand federal power indefinitely, swallowing state authority.'
+    },
+    { cat:'docs', type:'mc',
+      stem: 'Federalist No. 51 is best known for defending which constitutional principle?',
+      choices: ['Judicial review','A strong unitary executive','Checks and balances between the branches','Unlimited congressional power'],
+      answer: 2,
+      explain: '"Ambition must be made to counteract ambition." Federalist 51 defends the system of checks and balances, arguing each branch needs tools to resist the others.'
+    },
+    { cat:'docs', type:'mc',
+      stem: 'Alexander Hamilton\'s argument in Federalist No. 78 most directly supports which later development?',
+      choices: ['The creation of the Electoral College','Judicial review established in Marbury v. Madison','Presidential term limits in the 22nd Amendment','The direct election of senators in the 17th Amendment'],
+      answer: 1,
+      explain: 'Federalist 78 argued courts could strike down unconstitutional laws — this became the formal doctrine of judicial review in Marbury v. Madison (1803).'
+    },
+    { cat:'docs', type:'mc',
+      stem: 'Which of the following is a key weakness described in the Articles of Confederation?',
+      choices: [
+        'Congress had too much power to regulate interstate commerce.',
+        'The president could veto legislation without congressional override.',
+        'Congress could not levy taxes or enforce laws on states.',
+        'The Supreme Court could strike down state laws.'
+      ],
+      answer: 2,
+      explain: 'Under the Articles, Congress had no power to tax directly or compel states to follow its laws — a fatal weakness that led to the Constitutional Convention.'
+    },
+    { cat:'docs', type:'mc',
+      stem: 'Martin Luther King Jr.\'s "Letter from Birmingham Jail" draws most directly on which political concept also found in the Declaration of Independence?',
+      choices: ['Federalism','Natural law and the right to resist unjust authority','Separation of powers','Popular sovereignty through elections'],
+      answer: 1,
+      explain: 'Both King and Jefferson appealed to a higher moral/natural law. King argued citizens have a moral duty to disobey unjust laws — just as Jefferson said government derives legitimacy from protecting natural rights.'
+    },
+    { cat:'docs', type:'mc',
+      stem: 'Federalist No. 70 argues most directly for which feature of the U.S. Constitution?',
+      choices: ['Lifetime tenure for federal judges','Bicameral legislature','A single, energetic executive','Separation of powers into three branches'],
+      answer: 2,
+      explain: 'Hamilton argued in Federalist 70 that "energy in the executive" requires a single president — not a council — for accountability, speed, and decisiveness.'
+    },
+    { cat:'docs', type:'tf',
+      stem: 'True or False: The Articles of Confederation required unanimous consent of all 13 states to amend the document.',
+      choices: ['True','False'],
+      answer: 0,
+      explain: 'True. This made the Articles nearly impossible to fix — any single state could block any improvement, which was one of the main reasons it failed.'
+    },
+    { cat:'docs', type:'mc',
+      stem: 'Which document most directly established the philosophical basis for the right to revolution against an unjust government?',
+      choices: ['Federalist No. 51','The Articles of Confederation','The Declaration of Independence','Brutus No. 1'],
+      answer: 2,
+      explain: 'The Declaration of Independence explicitly states that when government fails to protect unalienable rights, "it is the Right of the People to alter or to abolish it."'
+    },
+    { cat:'docs', type:'frq',
+      stem: 'Briefly explain ONE difference between the arguments made in Federalist No. 10 and Brutus No. 1 regarding the size of the republic.',
+      rubric: '<strong>Strong answer includes:</strong><br>• Federalist 10 (Madison): A large republic is BETTER because it contains more factions that compete and cancel each other out — no single group can dominate.<br>• Brutus 1: A large republic is DANGEROUS because representatives cannot truly know or represent such a diverse population, and government will be too distant from the people.<br>• Both agree factions/self-interest are real problems — they disagree on the solution.',
+    },
+
+    // ── COURT CASES ──
+    { cat:'cases', type:'mc',
+      stem: 'In <em>Marbury v. Madison</em> (1803), the Supreme Court established which foundational power?',
+      choices: ['The power to impeach the president','Judicial review — the power to strike down unconstitutional laws','The power to ratify treaties','The right to issue executive orders'],
+      answer: 1,
+      explain: 'Chief Justice Marshall ruled the Court has the authority to declare acts of Congress unconstitutional — establishing judicial review as the bedrock of federal court power.'
+    },
+    { cat:'cases', type:'mc',
+      stem: 'Which Supreme Court case established that Congress has implied powers beyond those explicitly listed in the Constitution?',
+      choices: ['Marbury v. Madison','United States v. Lopez','McCulloch v. Maryland','Baker v. Carr'],
+      answer: 2,
+      explain: 'McCulloch v. Maryland (1819) held that the Necessary and Proper Clause grants Congress implied powers, and that states cannot tax the federal government.'
+    },
+    { cat:'cases', type:'mc',
+      stem: '<em>Tinker v. Des Moines</em> (1969) established that student speech may be restricted only if it causes:',
+      choices: ['Any disruption to school activities','Substantial disruption to the school environment','Offense to other students or teachers','A security risk to school property'],
+      answer: 1,
+      explain: 'The "substantial disruption" test from Tinker: schools can only limit student speech if it materially disrupts the educational environment. Passive symbolic speech (armbands) does not meet this bar.'
+    },
+    { cat:'cases', type:'mc',
+      stem: 'The Supreme Court\'s ruling in <em>Brown v. Board of Education</em> (1954) overturned the precedent set in which earlier case?',
+      choices: ['Marbury v. Madison (1803)','Dred Scott v. Sandford (1857)','Plessy v. Ferguson (1896)','McCulloch v. Maryland (1819)'],
+      answer: 2,
+      explain: 'Brown overturned Plessy v. Ferguson (1896), which had established the "separate but equal" doctrine and permitted racial segregation in public facilities.'
+    },
+    { cat:'cases', type:'mc',
+      stem: 'In <em>Citizens United v. FEC</em> (2010), the Court ruled that limits on corporate political spending violated which constitutional provision?',
+      choices: ['The Equal Protection Clause of the 14th Amendment','The First Amendment\'s protection of free speech','The Commerce Clause','The Due Process Clause'],
+      answer: 1,
+      explain: 'The Court held that political spending is a form of protected speech under the First Amendment, and that corporations and unions have these speech rights.'
+    },
+    { cat:'cases', type:'mc',
+      stem: 'Which case limited Congress\'s ability to use the Commerce Clause to regulate non-economic, local activities?',
+      choices: ['McCulloch v. Maryland','Shaw v. Reno','United States v. Lopez','McDonald v. Chicago'],
+      answer: 2,
+      explain: 'U.S. v. Lopez (1995) struck down a federal gun-free school zones law, ruling that possessing a gun near a school is not economic activity and therefore beyond Congress\'s Commerce Clause reach.'
+    },
+    { cat:'cases', type:'mc',
+      stem: '<em>Gideon v. Wainwright</em> (1963) incorporated the right to counsel to the states using which constitutional amendment?',
+      choices: ['The 5th Amendment','The 6th Amendment via the 14th Amendment','The 4th Amendment','The 8th Amendment'],
+      answer: 1,
+      explain: 'The Court used the 14th Amendment\'s Due Process Clause to apply the 6th Amendment right to an attorney to state criminal proceedings.'
+    },
+    { cat:'cases', type:'mc',
+      stem: 'A student is suspended for wearing a political t-shirt to school. Based on <em>Tinker v. Des Moines</em>, which question is MOST important in determining if the suspension is constitutional?',
+      choices: [
+        'Whether the student had parental permission to wear the shirt.',
+        'Whether the shirt caused or was likely to cause substantial disruption.',
+        'Whether the political message was controversial.',
+        'Whether other students complained about the shirt.'
+      ],
+      answer: 1,
+      explain: 'Tinker\'s test is substantial disruption. The school must demonstrate the speech actually caused — or was reasonably likely to cause — significant disruption to the educational process.'
+    },
+    { cat:'cases', type:'mc',
+      stem: 'The holding in <em>Engel v. Vitale</em> (1962) is most directly based on which constitutional clause?',
+      choices: ['Free Exercise Clause','Establishment Clause','Free Speech Clause','Due Process Clause'],
+      answer: 1,
+      explain: 'Engel ruled that government-sponsored school prayer violates the Establishment Clause of the First Amendment — government cannot write or sponsor religious exercises.'
+    },
+    { cat:'cases', type:'mc',
+      stem: '<em>McDonald v. Chicago</em> (2010) is significant primarily because it:',
+      choices: [
+        'First established an individual right to own firearms.',
+        'Applied the Second Amendment to state and local governments via incorporation.',
+        'Banned all local gun control ordinances.',
+        'Expanded the definition of "arms" under the Second Amendment.'
+      ],
+      answer: 1,
+      explain: 'McDonald incorporated the Second Amendment to the states via the 14th Amendment\'s Due Process Clause. The individual right had already been established in D.C. v. Heller (2008).'
+    },
+    { cat:'cases', type:'mc',
+      stem: 'The "clear and present danger" test originated in which Supreme Court case?',
+      choices: ['Tinker v. Des Moines','New York Times Co. v. United States','Schenck v. United States','Wisconsin v. Yoder'],
+      answer: 2,
+      explain: 'Schenck v. United States (1919) introduced the "clear and present danger" test, holding that speech creating an immediate danger to public safety is not protected by the First Amendment.'
+    },
+    { cat:'cases', type:'tf',
+      stem: 'True or False: In <em>New York Times Co. v. United States</em> (1971), the Supreme Court ruled the government could prevent the Times from publishing the Pentagon Papers.',
+      choices: ['True','False'],
+      answer: 1,
+      explain: 'False. The Court ruled AGAINST prior restraint (pre-publication censorship), holding that the government did not meet the heavy burden needed to justify stopping publication.'
+    },
+    { cat:'cases', type:'frq',
+      stem: 'Explain how <em>McCulloch v. Maryland</em> (1819) expanded federal power and identify the constitutional clause(s) it relied upon.',
+      rubric: '<strong>Strong answer includes:</strong><br>• McCulloch established that Congress has implied powers beyond those explicitly listed — based on the Necessary and Proper Clause (Art. I, Sec. 8).<br>• It also held that states cannot tax federal institutions — based on the Supremacy Clause.<br>• Key quote concept: "The power to tax involves the power to destroy" — states can\'t be allowed to undermine federal institutions.<br>• Impact: dramatically expanded what Congress could regulate for the next 180+ years.',
+    },
+
+    // ── AMENDMENTS ──
+    { cat:'amends', type:'mc',
+      stem: 'Which amendment has been most frequently used by the Supreme Court to apply Bill of Rights protections to state governments?',
+      choices: ['The 10th Amendment','The 5th Amendment','The 14th Amendment','The 1st Amendment'],
+      answer: 2,
+      explain: 'The 14th Amendment\'s Due Process Clause is the vehicle for incorporation — it has been used to apply nearly every Bill of Rights protection to state governments.'
+    },
+    { cat:'amends', type:'mc',
+      stem: 'A law requiring voters to pay a fee before casting a ballot in a federal election would be unconstitutional under which amendment?',
+      choices: ['15th Amendment','19th Amendment','24th Amendment','26th Amendment'],
+      answer: 2,
+      explain: 'The 24th Amendment (1964) abolished poll taxes in federal elections — a tool that had been used to suppress Black voter turnout in the South.'
+    },
+    { cat:'amends', type:'mc',
+      stem: 'The 17th Amendment changed American democracy by:',
+      choices: [
+        'Giving women the right to vote.',
+        'Requiring direct popular election of U.S. Senators.',
+        'Limiting the president to two terms.',
+        'Lowering the voting age to 18.'
+      ],
+      answer: 1,
+      explain: 'Before the 17th Amendment (1913), state legislatures chose U.S. Senators. The 17th shifted this to direct popular election, making the Senate more democratically accountable.'
+    },
+    { cat:'amends', type:'mc',
+      stem: 'A government official announces that the state will begin teaching a specific religion\'s prayers in public schools. Which part of the First Amendment is MOST directly violated?',
+      choices: ['Free Exercise Clause','Free Speech Clause','Establishment Clause','Petition Clause'],
+      answer: 2,
+      explain: 'The Establishment Clause prohibits government from endorsing or promoting religion. Government-written school prayers were struck down in Engel v. Vitale using this exact clause.'
+    },
+    { cat:'amends', type:'mc',
+      stem: 'Which of the following correctly lists the First Amendment\'s five protected freedoms using the RAPPS mnemonic?',
+      choices: [
+        'Religion, Arms, Press, Petition, Speech',
+        'Religion, Assembly, Press, Petition, Speech',
+        'Rights, Assembly, Privacy, Petition, Speech',
+        'Religion, Assembly, Privacy, Property, Speech'
+      ],
+      answer: 1,
+      explain: 'RAPPS: Religion (free exercise + establishment), Assembly, Press, Petition, and Speech. The 2nd Amendment covers arms — that\'s not in the 1st.'
+    },
+    { cat:'amends', type:'mc',
+      stem: 'The 10th Amendment most directly supports which concept debated throughout American political history?',
+      choices: ['Judicial review','Federalism and states\' reserved powers','Congressional implied powers','Individual civil liberties'],
+      answer: 1,
+      explain: 'The 10th Amendment reserves all powers not delegated to the federal government to the states or the people — it is the constitutional foundation of federalism and state sovereignty.'
+    },
+    { cat:'amends', type:'tf',
+      stem: 'True or False: The 22nd Amendment was passed in direct response to Franklin D. Roosevelt serving four terms as president.',
+      choices: ['True','False'],
+      answer: 0,
+      explain: 'True. FDR\'s four terms broke the two-term tradition set by Washington. After his death in office, Congress passed the 22nd Amendment (ratified 1951) to formally limit presidents to two terms.'
+    },
+    { cat:'amends', type:'mc',
+      stem: 'Which pair of amendments working together most directly expanded voting rights in the United States?',
+      choices: [
+        '1st and 5th Amendments',
+        '13th and 14th Amendments',
+        '15th, 19th, 24th, and 26th Amendments',
+        '10th and 17th Amendments'
+      ],
+      answer: 2,
+      explain: 'These four amendments progressively expanded voting rights: 15th (race), 19th (sex), 24th (poll taxes), 26th (age 18) — together they make up the core of voting rights expansion.'
+    },
+
+    // ── NUMBERS ──
+    { cat:'numbers', type:'mc',
+      stem: 'How many electoral votes does a presidential candidate need to win the presidency?',
+      choices: ['269','270','290','300'],
+      answer: 1,
+      explain: '270 out of 538 total electoral votes — a simple majority. If no candidate reaches 270, the House of Representatives chooses the president (contingent election).'
+    },
+    { cat:'numbers', type:'mc',
+      stem: 'How many Senate votes are required to invoke cloture and end a filibuster?',
+      choices: ['51','55','60','67'],
+      answer: 2,
+      explain: '60 votes (3/5 of 100 senators) are required to invoke cloture — stopping unlimited debate (filibuster) and forcing a vote on a bill.'
+    },
+    { cat:'numbers', type:'mc',
+      stem: 'To propose a constitutional amendment, Congress must pass it by a vote of:',
+      choices: ['Simple majority in both chambers','Two-thirds of both the House and Senate','Three-fourths of both chambers','Unanimous consent of both chambers'],
+      answer: 1,
+      explain: 'Article V requires 2/3 of both the House (290 votes) and Senate (67 votes) to propose an amendment. Then 3/4 of states (38) must ratify it.'
+    },
+    { cat:'numbers', type:'mc',
+      stem: 'How many justices sit on the U.S. Supreme Court, and how many votes are needed for a majority ruling?',
+      choices: ['7 justices; 4 to rule','9 justices; 5 to rule','9 justices; 6 to rule','11 justices; 6 to rule'],
+      answer: 1,
+      explain: '9 justices total (1 Chief + 8 Associates). A simple majority of 5 is required for a ruling. Only 4 votes are needed to grant certiorari (agree to hear a case) — the Rule of Four.'
+    },
+    { cat:'numbers', type:'mc',
+      stem: 'What is the minimum age requirement for a member of the U.S. Senate?',
+      choices: ['25 years old','30 years old','35 years old','18 years old'],
+      answer: 1,
+      explain: 'Senators must be at least 30 years old. House members must be at least 25. The president must be at least 35 and a natural-born citizen.'
+    },
+    { cat:'numbers', type:'mc',
+      stem: 'How many states must ratify a constitutional amendment for it to become law?',
+      choices: ['26 (simple majority)','34 (two-thirds)','38 (three-fourths)','50 (unanimous)'],
+      answer: 2,
+      explain: '38 of 50 states (3/4) must ratify an amendment. This high threshold ensures broad national consensus before the Constitution is changed.'
+    },
+    { cat:'numbers', type:'mc',
+      stem: 'The Senate has the power to ratify a treaty with which vote threshold?',
+      choices: ['Simple majority (51 votes)','Three-fifths (60 votes)','Two-thirds (67 votes)','Three-fourths (75 votes)'],
+      answer: 2,
+      explain: '67 Senate votes (2/3) are required to ratify a treaty. The same 2/3 threshold applies to convicting and removing an official after impeachment.'
+    },
+    { cat:'numbers', type:'tf',
+      stem: 'True or False: The president has a formal role in the constitutional amendment process.',
+      choices: ['True','False'],
+      answer: 1,
+      explain: 'False. The president has NO role in amending the Constitution. Congress proposes (2/3 vote) and states ratify (3/4). No presidential signature is required or permitted.'
+    },
+    { cat:'numbers', type:'mc',
+      stem: 'A president wants to veto a bill. Congress wants to override. What is required for a successful override?',
+      choices: [
+        'Simple majority in the House only.',
+        'Two-thirds vote in both the House and Senate.',
+        'Three-fourths of state legislatures.',
+        'Simple majority in both chambers.'
+      ],
+      answer: 1,
+      explain: 'Overriding a presidential veto requires 2/3 of both chambers: 290 House votes and 67 Senate votes. This is intentionally difficult — most vetoes are sustained.'
+    },
+    { cat:'numbers', type:'mc',
+      stem: 'Which of the following correctly describes how House seats are allocated among states?',
+      choices: [
+        '2 seats per state, regardless of population.',
+        'Equal seats based on geographic size.',
+        'Based on population, reapportioned every 10 years after the census.',
+        'Fixed at 5 seats per state since the founding.'
+      ],
+      answer: 2,
+      explain: 'House seats (435 total) are apportioned by population and reapportioned every 10 years following the census. Every state gets at least 1 representative. Senate seats are 2 per state — equal regardless of population.'
+    },
+    { cat:'numbers', type:'frq',
+      stem: 'Explain the two-step process required to amend the U.S. Constitution. Why is this process intentionally difficult?',
+      rubric: '<strong>Strong answer includes:</strong><br>• Step 1 — Proposal: 2/3 of both House (290 votes) AND Senate (67 votes) must approve, OR 2/3 of state legislatures can call a convention (never used).<br>• Step 2 — Ratification: 3/4 of states (38 of 50) must ratify, either through state legislatures or state ratifying conventions.<br>• Why difficult: Framers wanted constitutional changes to reflect broad national consensus, not temporary majorities or factional whims. Connects to Federalist 51 — protecting rights from hasty majorities.',
+    },
+
+    // ── DOCUMENTS — NEW ──
+    { cat:'docs', type:'mc',
+      stem: 'Federalist No. 51 argues that the best protection against tyranny is:',
+      choices: ['A strong military','Giving all power to an elected legislature','Making ambition counteract ambition through separated powers','Relying on the virtue of elected officials'],
+      answer: 2,
+      explain: '"Ambition must be made to counteract ambition." Madison argued that structural checks — not good intentions — protect liberty. Each branch must have the means to defend itself.'
+    },
+    { cat:'docs', type:'mc',
+      stem: 'Which of the following best describes the Antifederalist position expressed in Brutus No. 1?',
+      choices: [
+        'A strong national government is necessary to prevent foreign invasion.',
+        'The proposed Constitution would concentrate too much power in the central government and undermine states.',
+        'Factions are the greatest threat to republican government.',
+        'The president needs broad powers to act decisively in emergencies.'
+      ],
+      answer: 1,
+      explain: 'Brutus No. 1 argued the Constitution\'s broad grants of power — especially the Necessary and Proper Clause — would allow Congress to swallow state authority and oppress citizens.'
+    },
+    { cat:'docs', type:'mc',
+      stem: 'The concept of the "social contract" as described in the Declaration of Independence was most directly influenced by which Enlightenment philosopher?',
+      choices: ['Montesquieu','Thomas Hobbes','John Locke','Jean-Jacques Rousseau'],
+      answer: 2,
+      explain: 'Jefferson drew heavily on John Locke\'s Second Treatise — natural rights (life, liberty, property), consent of the governed, and the right to revolution when government fails its duties.'
+    },
+    { cat:'docs', type:'mc',
+      stem: 'Which of the following scenarios best illustrates the concern raised in Brutus No. 1 about the Necessary and Proper Clause?',
+      choices: [
+        'Congress passes a bill setting the federal minimum wage.',
+        'A state passes its own criminal code.',
+        'The Supreme Court strikes down a state law under the Supremacy Clause.',
+        'Congress uses its implied powers to regulate an activity previously controlled only by states.'
+      ],
+      answer: 3,
+      explain: 'Brutus feared the Necessary and Proper Clause would let Congress continually expand its reach into areas previously reserved to states — exactly what happened as federal power grew over two centuries.'
+    },
+    { cat:'docs', type:'mc',
+      stem: 'The primary purpose of Federalist No. 78 was to defend which feature of the proposed Constitution?',
+      choices: ['The Electoral College system','The president\'s veto power','Lifetime tenure for federal judges','The Senate\'s role in treaty ratification'],
+      answer: 2,
+      explain: 'Hamilton argued in Federalist 78 that judicial independence — via lifetime appointments during good behavior — was essential to protect rights and enable judges to strike down unconstitutional laws.'
+    },
+    { cat:'docs', type:'tf',
+      stem: 'True or False: Federalist No. 10 argues that a pure democracy is the best way to control the effects of factions.',
+      choices: ['True','False'],
+      answer: 1,
+      explain: 'False. Madison argued the opposite — a pure democracy allows majority factions to oppress minorities with no check. A large representative republic is better because it dilutes factions and filters passions through elected representatives.'
+    },
+    { cat:'docs', type:'mc',
+      stem: 'MLK\'s "Letter from Birmingham Jail" most directly challenges which group of people?',
+      choices: ['Southern segregationist politicians','Northern white moderates who counseled patience','The Kennedy administration\'s civil rights policies','Radical Black nationalist groups'],
+      answer: 1,
+      explain: 'King wrote the letter directly in response to eight white clergymen who urged patience. He criticized white moderates who preferred "order" over justice and told Black Americans to wait for change through normal channels.'
+    },
+    { cat:'docs', type:'frq',
+      stem: 'Using Federalist No. 51, explain how the system of checks and balances limits the power of any single branch of government.',
+      rubric: '<strong>Strong answer includes:</strong><br>• Madison\'s core argument: "Ambition must be made to counteract ambition" — self-interest of officeholders keeps each branch from dominating others.<br>• Structural examples: president can veto Congress; Congress can override vetoes and impeach; courts can strike down laws via judicial review.<br>• Federalism adds a second layer: power divided between national and state governments.<br>• Key quote concept: "If men were angels, no government would be necessary" — we need checks because people are self-interested.'
+    },
+
+    // ── COURT CASES — NEW ──
+    { cat:'cases', type:'mc',
+      stem: 'Which Supreme Court case established that racial segregation in public schools is unconstitutional under the Equal Protection Clause?',
+      choices: ['Plessy v. Ferguson (1896)','Brown v. Board of Education (1954)','Gideon v. Wainwright (1963)','Baker v. Carr (1962)'],
+      answer: 1,
+      explain: 'Brown v. Board (1954) unanimously held that "separate but equal" schools are inherently unequal and violate the 14th Amendment\'s Equal Protection Clause. Chief Justice Warren wrote the opinion.'
+    },
+    { cat:'cases', type:'mc',
+      stem: 'In <em>Shaw v. Reno</em> (1993), the Court ruled that congressional redistricting plans that use race as the predominant factor:',
+      choices: [
+        'Are permitted if they increase minority representation.',
+        'Are subject to strict scrutiny and may violate the Equal Protection Clause.',
+        'Are required under the Voting Rights Act.',
+        'Can only be challenged by federal courts.'
+      ],
+      answer: 1,
+      explain: 'Shaw v. Reno held that using race as the predominant factor in drawing districts triggers strict scrutiny under the Equal Protection Clause — even if the goal is to help minority communities.'
+    },
+    { cat:'cases', type:'mc',
+      stem: 'Which case held that the government cannot prevent a newspaper from publishing classified documents about the Vietnam War?',
+      choices: ['Tinker v. Des Moines','Schenck v. United States','New York Times Co. v. United States','Engel v. Vitale'],
+      answer: 2,
+      explain: 'NYT Co. v. United States (1971) — the "Pentagon Papers" case — held that the government could not use prior restraint to stop publication. The government\'s burden to justify prior restraint is extremely heavy.'
+    },
+    { cat:'cases', type:'mc',
+      stem: 'A state law bans Amish families from withdrawing their children from school after 8th grade, violating their religious beliefs. Based on <em>Wisconsin v. Yoder</em>, this law is most likely:',
+      choices: [
+        'Constitutional because education is a compelling state interest.',
+        'Unconstitutional because it violates the Free Exercise Clause.',
+        'Constitutional because no religion is above the law.',
+        'Unconstitutional because it violates the Establishment Clause.'
+      ],
+      answer: 1,
+      explain: 'Wisconsin v. Yoder (1972) held that the state\'s interest in education did not override the Amish community\'s sincere, centuries-old religious practice of withdrawing children after 8th grade. Free Exercise Clause prevailed.'
+    },
+    { cat:'cases', type:'mc',
+      stem: 'The Supreme Court\'s use of the 14th Amendment to apply Bill of Rights protections to state governments is called:',
+      choices: ['Judicial review','Selective incorporation','The Supremacy Clause','Enumerated rights doctrine'],
+      answer: 1,
+      explain: 'Selective incorporation is the doctrine by which the Court has applied most (but not all) Bill of Rights protections to state governments via the 14th Amendment\'s Due Process Clause, case by case.'
+    },
+    { cat:'cases', type:'mc',
+      stem: 'Which of the following best describes the significance of <em>Baker v. Carr</em> (1962)?',
+      choices: [
+        'It established that prayer in public schools is unconstitutional.',
+        'It held that federal courts can hear cases about state legislative apportionment.',
+        'It applied the Second Amendment to state governments.',
+        'It struck down racial gerrymandering for the first time.'
+      ],
+      answer: 1,
+      explain: 'Baker v. Carr ruled that federal courts have jurisdiction over legislative apportionment cases — they are justiciable (suitable for court review), not purely political questions. This paved the way for "one person, one vote."'
+    },
+    { cat:'cases', type:'mc',
+      stem: '<em>Roe v. Wade</em> (1973) was based on an implied constitutional right to privacy rooted in which clause?',
+      choices: ['The 1st Amendment\'s Free Speech Clause','The 4th Amendment\'s unreasonable search clause','The 14th Amendment\'s Due Process Clause','The 9th Amendment\'s unenumerated rights'],
+      answer: 2,
+      explain: 'Roe relied on the substantive due process doctrine from the 14th Amendment — that certain fundamental rights, including privacy, are protected even if not explicitly listed. (It was overturned by Dobbs v. Jackson in 2022.)'
+    },
+    { cat:'cases', type:'mc',
+      stem: 'A student distributes anti-war pamphlets at school. The principal bans them, saying they are "disruptive to learning." Based on <em>Tinker v. Des Moines</em>, which additional fact would MOST help the student\'s case?',
+      choices: [
+        'The pamphlets were printed on school property.',
+        'The pamphlets did not actually cause any classroom disruption.',
+        'The student had previously been disciplined.',
+        'Other students agreed with the pamphlets\' message.'
+      ],
+      answer: 1,
+      explain: 'Under Tinker, student speech can only be restricted if it causes substantial disruption. Evidence that no actual disruption occurred would undermine the school\'s justification and strengthen the student\'s First Amendment claim.'
+    },
+    { cat:'cases', type:'mc',
+      stem: 'How did <em>United States v. Lopez</em> (1995) differ from the Court\'s commerce clause rulings for most of the 20th century?',
+      choices: [
+        'It dramatically expanded what Congress could regulate.',
+        'It limited federal power by ruling that non-economic local activity is beyond Congress\'s commerce clause reach.',
+        'It gave states new powers to tax interstate commerce.',
+        'It required Congress to define "commerce" more precisely in future laws.'
+      ],
+      answer: 1,
+      explain: 'For 60+ years after the New Deal, the Court had allowed Congress to regulate nearly anything with any economic connection. Lopez broke that trend by ruling guns near schools were purely local and non-economic — beyond congressional reach.'
+    },
+    { cat:'cases', type:'tf',
+      stem: 'True or False: <em>Citizens United v. FEC</em> (2010) allows unlimited direct donations from corporations to political candidates\' campaigns.',
+      choices: ['True','False'],
+      answer: 1,
+      explain: 'False. Citizens United only allowed unlimited INDEPENDENT expenditures — spending not coordinated with campaigns. Direct contributions to candidates are still regulated by federal law. The ruling led to Super PACs, not unlimited direct donations.'
+    },
+    { cat:'cases', type:'frq',
+      stem: 'Explain the constitutional significance of <em>Marbury v. Madison</em> (1803) and describe how it affected the long-term balance of power among the three branches.',
+      rubric: '<strong>Strong answer includes:</strong><br>• Established judicial review — the Court\'s power to declare laws unconstitutional.<br>• Marshall cleverly ruled AGAINST Marbury to GAIN power: the Court "lost" the case but claimed the bigger prize of judicial supremacy.<br>• Effect: made the judiciary a co-equal branch capable of checking both Congress and the president.<br>• Connection to Federalist 78: Hamilton had argued courts would need this power to protect the Constitution from factional majorities.'
+    },
+
+    // ── AMENDMENTS — NEW ──
+    { cat:'amends', type:'mc',
+      stem: 'The 4th Amendment protects against which of the following?',
+      choices: [
+        'Being tried twice for the same crime.',
+        'Unreasonable searches and seizures without a warrant based on probable cause.',
+        'Being forced to testify against yourself.',
+        'Cruel and unusual punishment.'
+      ],
+      answer: 1,
+      explain: 'The 4th Amendment requires warrants based on probable cause and protects people from unreasonable searches of their persons, homes, and papers. Evidence obtained illegally can be excluded (exclusionary rule).'
+    },
+    { cat:'amends', type:'mc',
+      stem: 'Under the 5th Amendment\'s Double Jeopardy Clause, a person who is acquitted of murder in state court:',
+      choices: [
+        'Can be retried in federal court for the exact same act.',
+        'Cannot be retried for the same crime in the same jurisdiction.',
+        'Can be retried if new evidence emerges within one year.',
+        'Can be retried if the jury verdict was not unanimous.'
+      ],
+      answer: 1,
+      explain: 'The Double Jeopardy Clause prevents being tried twice for the same offense in the same jurisdiction. Note: separate state and federal charges for the same act are constitutionally permitted (dual sovereignty doctrine).'
+    },
+    { cat:'amends', type:'mc',
+      stem: 'Which amendment abolished slavery throughout the United States?',
+      choices: ['13th Amendment','14th Amendment','15th Amendment','16th Amendment'],
+      answer: 0,
+      explain: 'The 13th Amendment (1865) abolished slavery and involuntary servitude throughout the U.S. — except as punishment for a crime. It was ratified following the Civil War.'
+    },
+    { cat:'amends', type:'mc',
+      stem: 'The 15th Amendment guaranteed voting rights regardless of:',
+      choices: ['Age','Sex','Race, color, or previous condition of servitude','Property ownership'],
+      answer: 2,
+      explain: 'Ratified in 1870, the 15th Amendment prohibited denying the right to vote based on race, color, or previous condition of servitude — aimed at ensuring Black men could vote after the Civil War. (Women\'s suffrage came with the 19th Amendment in 1920.)'
+    },
+    { cat:'amends', type:'mc',
+      stem: 'A person is arrested and questions are asked without Miranda warnings being given. Under the 5th Amendment, any confession obtained:',
+      choices: [
+        'Is automatically admitted as evidence.',
+        'May be excluded from trial as a violation of the right against self-incrimination.',
+        'Must be reviewed by a grand jury.',
+        'Is only excludable if the person explicitly asked for a lawyer.'
+      ],
+      answer: 1,
+      explain: 'Miranda v. Arizona (1966) held that suspects must be informed of their 5th Amendment right against self-incrimination and 6th Amendment right to counsel before custodial interrogation. Confessions without Miranda warnings may be excluded.'
+    },
+    { cat:'amends', type:'mc',
+      stem: 'The 26th Amendment, ratified in 1971, lowered the voting age to 18 primarily in response to:',
+      choices: [
+        'College campus protests against the Vietnam War.',
+        'A Supreme Court ruling requiring it.',
+        'The argument that young men drafted to fight in Vietnam should have the right to vote.',
+        'Pressure from state governments to standardize voting ages.'
+      ],
+      answer: 2,
+      explain: 'The central argument was that if 18-year-olds could be drafted and die for their country in Vietnam, they deserved the right to vote. Congress acted after the Court ruled it could not lower the age just for federal elections.'
+    },
+    { cat:'amends', type:'mc',
+      stem: 'Which amendment gave Congress the power to levy a federal income tax?',
+      choices: ['14th Amendment','16th Amendment','17th Amendment','19th Amendment'],
+      answer: 1,
+      explain: 'The 16th Amendment (1913) authorized Congress to collect taxes on income from any source — overruling a Supreme Court decision that had struck down an earlier income tax law. It enabled the modern federal tax system.'
+    },
+    { cat:'amends', type:'mc',
+      stem: 'The 8th Amendment\'s prohibition on "cruel and unusual punishment" is most directly relevant in debates about:',
+      choices: ['Police use of force during arrests','The death penalty and prison conditions','Mandatory minimum sentencing laws','The right to bail before trial'],
+      answer: 1,
+      explain: 'The 8th Amendment prohibits punishment that is grossly disproportionate, inhumane, or torturous. It is most heavily litigated in death penalty cases and challenges to prison conditions.'
+    },
+    { cat:'amends', type:'tf',
+      stem: 'True or False: The 19th Amendment granted voting rights to all women citizens of the United States when ratified in 1920.',
+      choices: ['True','False'],
+      answer: 0,
+      explain: 'True in text — the 19th Amendment prohibits denying the vote based on sex. However, in practice, many Black women (and men) were still disenfranchised through Jim Crow laws until the Voting Rights Act of 1965.'
+    },
+    { cat:'amends', type:'mc',
+      stem: 'A person is charged with a federal felony. Under the 5th Amendment, before they can be tried they are constitutionally entitled to:',
+      choices: [
+        'A preliminary hearing before a judge.',
+        'Presentment or indictment by a grand jury.',
+        'A bail hearing within 24 hours.',
+        'A review by the Court of Appeals.'
+      ],
+      answer: 1,
+      explain: 'The 5th Amendment requires that federal felony charges go through a grand jury (presentment or indictment). Grand juries determine whether there is enough evidence to bring someone to trial — they are not required in state courts.'
+    },
+    { cat:'amends', type:'frq',
+      stem: 'Explain how the 14th Amendment\'s Equal Protection Clause has been used to expand civil rights. Use at least ONE Supreme Court case to support your answer.',
+      rubric: '<strong>Strong answer includes:</strong><br>• Equal Protection Clause (14th Amendment, 1868): no state shall deny any person equal protection of the laws.<br>• Originally intended to protect formerly enslaved people from discriminatory state laws.<br>• Brown v. Board (1954): Court used Equal Protection to strike down school segregation — "separate but equal" is inherently unequal.<br>• Shaw v. Reno (1993): Equal Protection applies even to race-conscious redistricting intended to help minorities.<br>• McDonald v. Chicago (2010): 14th Amendment\'s Due Process Clause also used to incorporate 2nd Amendment to states.<br>• Broader significance: the 14th Amendment became the primary vehicle for expanding civil rights and applying the Bill of Rights to states.'
+    },
+
+    // ── NUMBERS — NEW ──
+    { cat:'numbers', type:'mc',
+      stem: 'How are electoral votes allocated to the states?',
+      choices: [
+        'Equally — 10 per state.',
+        'Based on each state\'s total congressional delegation (House seats + 2 Senate seats).',
+        'Based solely on population from the most recent census.',
+        'By the state legislature\'s decision each election cycle.'
+      ],
+      answer: 1,
+      explain: 'Each state\'s electoral vote count equals its total congressional representation: House seats (based on population) + 2 Senate seats. This is why California has 54 and Wyoming has 3.'
+    },
+    { cat:'numbers', type:'mc',
+      stem: 'If no presidential candidate wins a majority of electoral votes, who chooses the president?',
+      choices: [
+        'The Senate, with each senator casting one vote.',
+        'The Supreme Court.',
+        'The House of Representatives, with each state delegation casting one vote.',
+        'A joint session of Congress by simple majority.'
+      ],
+      answer: 2,
+      explain: 'In a contingent election, the House chooses the president — but each STATE DELEGATION gets one vote (not each member), so all 50 states have equal say. The Senate separately chooses the vice president.'
+    },
+    { cat:'numbers', type:'mc',
+      stem: 'The Senate\'s "advice and consent" role applies to which of the following?',
+      choices: [
+        'Presidential executive orders.',
+        'Declaration of war.',
+        'Presidential nominations to federal courts and the cabinet.',
+        'All federal regulations issued by executive agencies.'
+      ],
+      answer: 2,
+      explain: 'The Senate confirms (by simple majority) presidential nominations to federal courts, including the Supreme Court, and cabinet positions. Treaties require 2/3 Senate ratification — both are part of "advice and consent."'
+    },
+    { cat:'numbers', type:'mc',
+      stem: 'Which of the following correctly describes the difference between the House and Senate regarding impeachment?',
+      choices: [
+        'The House convicts; the Senate impeaches.',
+        'The House impeaches by simple majority; the Senate convicts by 2/3 majority.',
+        'Both chambers must vote by 2/3 majority to remove an official.',
+        'Only the Senate can initiate impeachment proceedings.'
+      ],
+      answer: 1,
+      explain: 'The House impeaches (formally charges) by simple majority — like a grand jury. The Senate then holds the trial and must vote 2/3 (67 senators) to convict and remove. No president has ever been removed by this process.'
+    },
+    { cat:'numbers', type:'mc',
+      stem: 'What is the total number of voting members in the U.S. House of Representatives?',
+      choices: ['100','435','535','538'],
+      answer: 1,
+      explain: '435 members in the House, apportioned by state population. The Senate has 100 (2 per state). Together they form Congress\'s 535 voting members. The 538 electoral votes = 535 congressional members + 3 for D.C.'
+    },
+    { cat:'numbers', type:'mc',
+      stem: 'How long is one term for a U.S. Senator, and what fraction of senators face election every two years?',
+      choices: ['4 years; one-half','6 years; one-third','6 years; one-half','4 years; one-fourth'],
+      answer: 1,
+      explain: 'Senators serve 6-year terms, and the Senate is divided into three classes — so roughly 1/3 of senators are up for election every 2 years. This ensures continuity; the Senate never faces a complete turnover at once.'
+    },
+    { cat:'numbers', type:'mc',
+      stem: 'The "Rule of Four" in the Supreme Court refers to:',
+      choices: [
+        'The minimum number of justices needed to hear oral arguments.',
+        'The four most senior associate justices who assign opinions.',
+        'The four votes required from justices to grant certiorari and hear a case.',
+        'The four-week deadline for the Court to respond to emergency petitions.'
+      ],
+      answer: 2,
+      explain: 'Only 4 of the 9 justices need to agree to grant certiorari (agree to hear a case). Five justices are needed to decide the case itself. The Court receives ~7,000–8,000 cert petitions annually but hears only ~60–80.'
+    },
+    { cat:'numbers', type:'mc',
+      stem: 'A president signs a bill on Day 1. Congress adjourns on Day 8. The president then does nothing. What happens to the bill?',
+      choices: [
+        'It becomes law because the president already signed it on Day 1.',
+        'It dies — this is a pocket veto.',
+        'It automatically becomes law after 10 days of inaction.',
+        'It returns to Congress for reconsideration.'
+      ],
+      answer: 0,
+      explain: 'Wait — the president SIGNED it on Day 1, so it already became law at signing. A pocket veto only occurs when the president takes NO action and Congress adjourns within the 10-day window. Signing is a definitive action.'
+    },
+    { cat:'numbers', type:'tf',
+      stem: 'True or False: The Constitution sets the number of Supreme Court justices at nine.',
+      choices: ['True','False'],
+      answer: 1,
+      explain: 'False. The Constitution does not specify the number of Supreme Court justices — Congress sets that by statute. The number has ranged from 5 to 10 historically. The current 9-justice Court was set by Congress in 1869.'
+    },
+    { cat:'numbers', type:'mc',
+      stem: 'A constitutional amendment is ratified when:',
+      choices: [
+        'The president signs it after 2/3 of Congress approves.',
+        '2/3 of state governors approve it within seven years.',
+        '3/4 of state legislatures (or ratifying conventions) approve it.',
+        'A national referendum passes with a simple majority.'
+      ],
+      answer: 2,
+      explain: '38 of 50 states (3/4) must ratify a constitutional amendment. All 27 amendments were ratified by state legislatures except the 21st (Prohibition repeal), which used state ratifying conventions.'
+    },
+
+    // ── CROSS-TOPIC / AP-STYLE REASONING ──
+    { cat:'docs', type:'mc',
+      stem: 'A student argues: "The Electoral College is anti-democratic because it can result in a president who lost the popular vote." Which Federalist paper MOST directly provides a counter-argument?',
+      choices: ['Federalist No. 10','Federalist No. 51','Federalist No. 70','Federalist No. 78'],
+      answer: 0,
+      explain: 'Federalist 10 argues that pure democracy is dangerous — majorities can oppress minorities, and filters (like the Electoral College and representative structures) protect against mob rule and factional tyranny.'
+    },
+    { cat:'cases', type:'mc',
+      stem: 'A state passes a law requiring all public school students to recite a nondenominational prayer each morning. Based on relevant precedent, this law is MOST likely:',
+      choices: [
+        'Constitutional because the prayer is nondenominational.',
+        'Constitutional because it involves free exercise of religion.',
+        'Unconstitutional under the Establishment Clause per Engel v. Vitale.',
+        'Unconstitutional under the Free Exercise Clause per Wisconsin v. Yoder.'
+      ],
+      answer: 2,
+      explain: 'Engel v. Vitale (1962) held that government-written or sponsored school prayer violates the Establishment Clause regardless of whether it is denominational or voluntary.'
+    },
+    { cat:'amends', type:'mc',
+      stem: 'Which of the following government actions would MOST likely violate the 1st Amendment\'s Free Exercise Clause?',
+      choices: [
+        'A law requiring all businesses to be closed on Sundays.',
+        'A law specifically targeting a religious group\'s practice with no secular justification.',
+        'A tax on all nonprofit organizations, including churches.',
+        'A law requiring religious groups to register with the government.'
+      ],
+      answer: 1,
+      explain: 'A law that specifically targets a religious practice with no neutral, generally applicable justification is precisely what the Free Exercise Clause prohibits. Neutral laws of general applicability that incidentally burden religion are usually upheld.'
+    },
+    { cat:'cases', type:'mc',
+      stem: 'The holding in <em>McCulloch v. Maryland</em> that "the power to tax is the power to destroy" was used to establish which principle?',
+      choices: [
+        'States can tax the federal government if revenue is needed.',
+        'Congress can tax any activity it chooses to regulate.',
+        'States cannot use their taxing power to undermine federal institutions.',
+        'The federal government can tax state governments equally.'
+      ],
+      answer: 2,
+      explain: 'Marshall used this reasoning to conclude that Maryland\'s tax on the national bank was an attempt to destroy it. If states could tax federal entities, they could effectively nullify federal power — violating the Supremacy Clause.'
+    },
+    { cat:'docs', type:'mc',
+      stem: 'Which of the following best illustrates the concept of "checks and balances" as described in Federalist No. 51?',
+      choices: [
+        'A state legislature overriding a governor\'s veto.',
+        'The Senate filibustering a House-passed bill.',
+        'The president vetoing a bill passed by both chambers of Congress.',
+        'A federal agency issuing new regulations.'
+      ],
+      answer: 2,
+      explain: 'The presidential veto is a classic check: the executive can block legislative action. Congress can then override with 2/3 of both chambers. This institutional friction is exactly what Madison described in Federalist 51.'
+    },
+    { cat:'numbers', type:'mc',
+      stem: 'Which of the following CORRECTLY states a constitutional requirement to become president?',
+      choices: [
+        'Must be at least 30 years old.',
+        'Must have resided in the U.S. for at least 10 years.',
+        'Must be a natural-born citizen and at least 35 years old.',
+        'Must have previously served in elected office.'
+      ],
+      answer: 2,
+      explain: 'Article II requirements: natural-born citizen, at least 35 years old, and U.S. resident for at least 14 years. There is no requirement for prior office-holding — and no age maximum.'
+    },
+    { cat:'cases', type:'mc',
+      stem: 'The Supreme Court\'s ruling in <em>Engel v. Vitale</em> (1962) was based on the principle that the First Amendment\'s Establishment Clause requires:',
+      choices: [
+        'Government to be hostile to all religion.',
+        'Government neutrality toward religion — neither promoting nor inhibiting it.',
+        'Government to accommodate all religious practices equally.',
+        'Schools to offer optional religious instruction.'
+      ],
+      answer: 1,
+      explain: 'The Establishment Clause requires government neutrality — it cannot sponsor, write, or promote prayer. Engel made clear that even a "neutral" government-written prayer amounts to government endorsement of religion.'
+    },
+    { cat:'amends', type:'mc',
+      stem: 'The incorporation doctrine holds that:',
+      choices: [
+        'All amendments in the Bill of Rights apply automatically to state governments.',
+        'Most Bill of Rights protections apply to state governments through the 14th Amendment.',
+        'States may choose which Bill of Rights provisions to follow.',
+        'Only the 1st Amendment applies to state governments.'
+      ],
+      answer: 1,
+      explain: 'Selective incorporation — through the 14th Amendment\'s Due Process Clause — applies most (but not formally all) Bill of Rights protections to the states case by case. Each right is incorporated when the Court rules it "fundamental."'
+    },
+    { cat:'docs', type:'mc',
+      stem: 'Federalist No. 10 and Federalist No. 51 both address the problem of factions. What solution do they share?',
+      choices: [
+        'Eliminating political parties through law.',
+        'Relying on the moral virtue of elected leaders.',
+        'Using structural features of the Constitution to control the effects of self-interest.',
+        'Limiting the right to vote to property owners.'
+      ],
+      answer: 2,
+      explain: 'Both Federalist 10 (large republic dilutes factions) and Federalist 51 (separated powers make ambition counteract ambition) rely on structural constitutional design — not human virtue — to control self-interest and prevent tyranny.'
+    },
+    { cat:'cases', type:'mc',
+      stem: 'Which pair of Supreme Court cases best illustrates the gradual expansion of Second Amendment rights?',
+      choices: [
+        'Marbury v. Madison and McCulloch v. Maryland',
+        'Tinker v. Des Moines and Engel v. Vitale',
+        'D.C. v. Heller (2008) and McDonald v. Chicago (2010)',
+        'Schenck v. United States and New York Times Co. v. United States'
+      ],
+      answer: 2,
+      explain: 'Heller (2008) first established an individual right to keep firearms at home for self-defense. McDonald (2010) then incorporated this right to apply against state and local governments via the 14th Amendment.'
+    },
+    { cat:'numbers', type:'mc',
+      stem: 'What is a "pocket veto," and when can the president use it?',
+      choices: [
+        'Returning a bill to Congress with objections after 10 days.',
+        'Refusing to sign a bill when Congress has adjourned within the 10-day review window.',
+        'Vetoing a line item within an appropriations bill.',
+        'Sending a bill back to committee without signing or rejecting it.'
+      ],
+      answer: 1,
+      explain: 'A pocket veto occurs when the president takes no action on a bill AND Congress adjourns within the 10-day period. Since the bill can\'t be returned for an override vote, it dies. Congress can avoid this by staying in session.'
+    },
+    { cat:'amends', type:'mc',
+      stem: 'The "Miranda rights" that police must read to suspects before interrogation are rooted primarily in which amendment?',
+      choices: ['4th Amendment','5th Amendment','6th Amendment','8th Amendment'],
+      answer: 1,
+      explain: 'Miranda warnings are rooted in the 5th Amendment (right against self-incrimination) and the 6th Amendment (right to counsel). Suspects must be told they have the right to remain silent and the right to an attorney.'
+    },
+    { cat:'docs', type:'mc',
+      stem: 'Which of the following arguments would an Antifederalist like the author of Brutus No. 1 MOST likely make in opposition to a broad federal healthcare mandate?',
+      choices: [
+        'The federal government has a duty to protect citizens\' health.',
+        'The Necessary and Proper Clause allows Congress to do whatever helps the nation.',
+        'The 10th Amendment reserves health policy to the states, and the mandate exceeds Congress\'s enumerated powers.',
+        'The Commerce Clause has always allowed Congress to regulate healthcare.'
+      ],
+      answer: 2,
+      explain: 'An Antifederalist would argue that the Constitution only gives Congress enumerated powers, and health policy belongs to states under the 10th Amendment. They would see a federal mandate as exactly the kind of overreach Brutus No. 1 warned against.'
+    },
+    { cat:'cases', type:'frq',
+      stem: 'Select TWO Supreme Court cases from the list below and explain how each advanced or limited civil liberties:<br><em>Tinker v. Des Moines · Engel v. Vitale · Gideon v. Wainwright · United States v. Lopez</em>',
+      rubric: '<strong>Strong answer for each case includes:</strong><br><br><strong>Tinker:</strong> Advanced 1st Amendment rights — students retain free speech at school unless it causes substantial disruption. Protected symbolic political expression.<br><br><strong>Engel:</strong> Advanced religious liberty by enforcing Establishment Clause — government cannot write or sponsor prayer, protecting religious minorities from majority imposition.<br><br><strong>Gideon:</strong> Advanced 6th Amendment right to counsel — even defendants who can\'t afford a lawyer get one, equalizing access to justice regardless of wealth.<br><br><strong>Lopez:</strong> Limited congressional power (not directly a civil liberty case) — but restrained federal overreach, protecting state authority under the 10th Amendment / federalism.'
+    },
+    { cat:'numbers', type:'frq',
+      stem: 'Explain ONE way the Senate is more powerful than the House, and ONE way the House is more powerful than the Senate.',
+      rubric: '<strong>Strong answer includes:</strong><br><br><strong>Senate more powerful:</strong> Ratifies treaties (2/3 vote), confirms presidential nominations (justices, cabinet), tries impeachment cases, 6-year terms give more independence. Filibuster gives minority party significant leverage.<br><br><strong>House more powerful:</strong> All revenue/tax bills must originate in the House (Article I, Sec. 7), initiates impeachment proceedings, has 435 members vs. 100 — more representative of population. In contingent elections, House chooses the president.<br><br>Key point: the Framers intentionally created two chambers with different powers to check each other and represent different interests.'
+    },
+    { cat:'docs', type:'tf',
+      stem: 'True or False: The U.S. Constitution, as originally ratified in 1788, included a Bill of Rights protecting individual liberties.',
+      choices: ['True','False'],
+      answer: 1,
+      explain: 'False. The original Constitution contained no Bill of Rights — a major Antifederalist objection. The first ten amendments (the Bill of Rights) were ratified separately in 1791 as a political compromise to win ratification.'
+    },
+    { cat:'amends', type:'mc',
+      stem: 'Which amendment prohibits the quartering of soldiers in private homes without the owner\'s consent during peacetime?',
+      choices: ['2nd Amendment','3rd Amendment','4th Amendment','5th Amendment'],
+      answer: 1,
+      explain: 'The 3rd Amendment — rarely litigated — was a direct response to British quartering of troops in colonial homes. It prohibits forcing homeowners to house soldiers during peacetime without consent.'
+    },
+    { cat:'cases', type:'mc',
+      stem: 'Which of the following Supreme Court decisions MOST directly limited the press from publishing information the government deems sensitive?',
+      choices: [
+        'No case — the Court has never ruled on prior restraint.',
+        'New York Times Co. v. United States (1971) supported prior restraint.',
+        'The Court in NYT v. U.S. rejected prior restraint, setting a very high bar for government censorship.',
+        'Schenck v. United States allows the government to stop publication during wartime.'
+      ],
+      answer: 2,
+      explain: 'NYT v. United States (1971) actually rejected the government\'s attempt at prior restraint against the Pentagon Papers. The Court held that the government faces a "heavy presumption" against prior restraint — making pre-publication censorship constitutionally very difficult.'
+    },
+  ];
+
+  // ── QUIZ STATE ──────────────────────────────────────────────
+  let activeQuestions = [];
+  let answeredCount = 0;
+  let correctCount = 0;
+  let missedIndices = [];
+  let quizInitialized = false;
+
+  // ── GAMIFICATION STATE ──
+  let streak = 0;
+  let comboMultiplier = 1;
+  let wrongWeights = {}; // qIdx -> extra weight
+  let currentMode = 'normal';
+  let speedTimer = null;
+  let speedSecondsLeft = 30;
+  let currentSpeedQIdx = null;
+  let suddenDeath = false;
+  let quizDead = false;
+
+  const ENCOURAGE_MSGS = [
+    "Madison would be proud 🏛️",
+    "That's a 5 on the AP exam!",
+    "Hamilton approves ⚡",
+    "The Framers are smiling 📜",
+    "You're on fire! 🔥",
+    "Jefferson would agree 🪶",
+    "SCOTUS material right there ⚖️",
+    "Separation of powers? More like separation of wrong answers!",
+    "Chief Justice vibes 🏛️",
+    "That's a constitutional right answer!",
+  ];
+
+  function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  function initQuiz() {
+    if (!quizInitialized) { startQuiz(); quizInitialized = true; }
+  }
+
+  function startQuiz() {
+    if (speedTimer) { clearInterval(speedTimer); speedTimer = null; }
+    const cat = document.getElementById('quizCategory').value;
+    const count = parseInt(document.getElementById('quizCount').value);
+    currentMode = document.getElementById('quizMode').value;
+    answeredCount = 0; correctCount = 0; missedIndices = [];
+    streak = 0; comboMultiplier = 1; wrongWeights = {}; quizDead = false;
+
+    let pool = cat === 'all' ? ALL_QUESTIONS : ALL_QUESTIONS.filter(q => q.cat === cat);
+    // spaced repetition: weight questions by wrong count
+    let weighted = [];
+    pool.forEach((q,i) => {
+      const w = 1 + (wrongWeights[i] || 0);
+      for (let x=0; x<w; x++) weighted.push(q);
+    });
+    activeQuestions = shuffle(weighted).filter((q,i,arr)=>arr.indexOf(q)===i).slice(0, Math.min(count, pool.length));
+
+    document.getElementById('quizResults').style.display = 'none';
+    document.getElementById('scoreBar').style.display = 'block';
+    document.getElementById('quizHUD').style.display = 'block';
+    updateScoreBar();
+    updateHUD();
+    renderQuiz();
+  }
+
+  function updateScoreBar() {
+    const total = activeQuestions.filter(q => q.type !== 'frq').length;
+    document.getElementById('scoreText').textContent = correctCount + ' / ' + total + ' correct';
+    const pct = total > 0 ? (correctCount / total) * 100 : 0;
+    document.getElementById('scoreBarFill').style.width = pct + '%';
+  }
+
+  function updateHUD() {
+    // Flame emoji that grows with streak
+    const flames = streak === 0 ? '' : streak >= 10 ? '🔥🔥🔥' : streak >= 5 ? '🔥🔥' : '🔥';
+    const streakEl = document.getElementById('streakDisplay');
+    if (streak > 0) {
+      streakEl.textContent = `${flames} ${streak} streak`;
+    } else {
+      streakEl.textContent = '';
+    }
+    const comboEl = document.getElementById('comboDisplay');
+    if (comboMultiplier > 1) {
+      comboEl.textContent = `✨ ${comboMultiplier}x combo!`;
+    } else {
+      comboEl.textContent = '';
+    }
+  }
+
+  function triggerStreakFlash(msg) {
+    const overlay = document.getElementById('streakFlash');
+    const msgEl = document.getElementById('streakFlashMsg');
+    msgEl.textContent = msg;
+    overlay.style.opacity = '1';
+    msgEl.style.transform = 'scale(1)';
+    setTimeout(() => {
+      overlay.style.opacity = '0';
+      msgEl.style.transform = 'scale(0.5)';
+    }, 900);
+  }
+
+  function triggerGoldFlash() {
+    const el = document.getElementById('goldFlash');
+    el.style.opacity = '1';
+    setTimeout(() => el.style.opacity = '0', 250);
+  }
+
+  function animateMascot(correct) {
+    const m = document.getElementById('mascot');
+    m.classList.remove('mascot-pump','mascot-droop');
+    void m.offsetWidth; // reflow
+    if (correct) { m.textContent = '⚖️'; m.classList.add('mascot-pump'); }
+    else { m.textContent = '📜'; m.classList.add('mascot-droop'); setTimeout(()=> m.textContent='⚖️', 600); }
+  }
+
+  function showEncourage() {
+    const el = document.getElementById('encourageMsg');
+    el.textContent = ENCOURAGE_MSGS[Math.floor(Math.random() * ENCOURAGE_MSGS.length)];
+    setTimeout(() => el.textContent = '', 2200);
+  }
+
+  function renderQuiz(subset) {
+    const container = document.getElementById('quizContainer');
+    const questions = subset || activeQuestions;
+    container.innerHTML = '';
+
+    if (currentMode === 'sudden') {
+      const banner = document.createElement('div');
+      banner.className = 'sudden-death-banner';
+      banner.textContent = '💀 SUDDEN DEATH — one wrong answer ends the quiz';
+      container.appendChild(banner);
+    }
+
+    questions.forEach((q, i) => {
+      const div = document.createElement('div');
+      div.className = 'q-card';
+      div.id = 'qcard-' + i;
+
+      const typeLabel = q.type === 'mc' ? 'Multiple Choice' : q.type === 'tf' ? 'True / False' : 'Short Answer (FRQ)';
+      const typeCls = q.type === 'mc' ? 'qtype-mc' : q.type === 'tf' ? 'qtype-tf' : 'qtype-frq';
+
+      let bodyHTML = `
+        <div class="q-num">Question ${i + 1} of ${questions.length}</div>
+        <span class="q-type-badge ${typeCls}">${typeLabel}</span>
+        <div class="q-stem">${q.stem}</div>`;
+
+      if (q.type === 'mc' || q.type === 'tf') {
+        let choicesWithIdx = q.choices.map((c, ci) => ({ text: c, orig: ci }));
+        if (q.type === 'mc') choicesWithIdx = shuffle(choicesWithIdx);
+        const letters = ['A','B','C','D','E'];
+
+        bodyHTML += `<div class="q-choices" id="choices-${i}">`;
+        choicesWithIdx.forEach((c, ci) => {
+          bodyHTML += `<div class="q-choice" onclick="selectChoice(this, ${i}, ${c.orig}, ${q.answer})" data-orig="${c.orig}">
+            <span class="choice-letter">${letters[ci]}</span>
+            <span>${c.text}</span>
+          </div>`;
+        });
+        bodyHTML += `</div>
+          <button class="check-btn" id="check-${i}" onclick="checkMC(${i}, ${q.answer})" disabled>Check Answer</button>
+          <div class="q-feedback" id="feedback-${i}"></div>`;
+
+        if (currentMode === 'speed') {
+          bodyHTML += `<div id="speedbar-${i}" style="height:4px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden;margin-top:12px;display:none;"><div id="speedfill-${i}" style="height:100%;width:100%;background:linear-gradient(90deg,#4ec9c0,var(--gold));border-radius:2px;transition:width 1s linear;"></div></div>`;
+        }
+
+      } else {
+        bodyHTML += `
+          <textarea class="frq-input" id="frq-${i}" placeholder="Write your answer here..."></textarea>
+          <button class="check-btn" onclick="revealRubric(${i})">Reveal Rubric</button>
+          <div class="frq-rubric" id="rubric-${i}">${q.rubric}</div>`;
+      }
+
+      div.innerHTML = bodyHTML;
+      container.appendChild(div);
+    });
+
+    const submitDiv = document.createElement('div');
+    submitDiv.innerHTML = `<button id="submitAll" onclick="submitAll()">Submit Quiz &amp; See Results</button>`;
+    container.appendChild(submitDiv);
+
+    // Start speed mode on first MC question
+    if (currentMode === 'speed') {
+      const firstMCIdx = questions.findIndex(q => q.type === 'mc' || q.type === 'tf');
+      if (firstMCIdx >= 0) startSpeedTimer(firstMCIdx);
+    }
+  }
+
+  // ── SPEED TIMER ──
+  function startSpeedTimer(qIdx) {
+    if (speedTimer) clearInterval(speedTimer);
+    currentSpeedQIdx = qIdx;
+    speedSecondsLeft = 30;
+    const timerEl = document.getElementById('timerDisplay');
+    timerEl.style.display = 'block';
+    const bar = document.getElementById('speedbar-' + qIdx);
+    const fill = document.getElementById('speedfill-' + qIdx);
+    if (bar) bar.style.display = 'block';
+
+    function tick() {
+      timerEl.textContent = speedSecondsLeft + 's';
+      if (fill) fill.style.width = (speedSecondsLeft / 30 * 100) + '%';
+      if (speedSecondsLeft <= 8) timerEl.classList.add('timer-urgent');
+      else timerEl.classList.remove('timer-urgent');
+      if (speedSecondsLeft <= 0) {
+        clearInterval(speedTimer);
+        // auto-submit as wrong
+        const q = activeQuestions[qIdx];
+        if (q && (q.type === 'mc' || q.type === 'tf')) {
+          const feedback = document.getElementById('feedback-' + qIdx);
+          const card = document.getElementById('qcard-' + qIdx);
+          if (feedback && !card.classList.contains('correct-card') && !card.classList.contains('wrong-card')) {
+            document.querySelectorAll(`#choices-${qIdx} .q-choice`).forEach(c => {
+              c.classList.add('locked');
+              if (parseInt(c.getAttribute('data-orig')) === q.answer) c.classList.add('correct-ans');
+            });
+            feedback.className = 'q-feedback incorrect show';
+            feedback.innerHTML = '⏱ Time\'s up! ' + q.explain;
+            card.classList.add('wrong-card');
+            missedIndices.push(qIdx);
+            wrongWeights[qIdx] = (wrongWeights[qIdx] || 0) + 1;
+            answeredCount++;
+            onWrong(qIdx);
+            updateScoreBar();
+          }
+        }
+      }
+      speedSecondsLeft--;
+    }
+    tick();
+    speedTimer = setInterval(tick, 1000);
+  }
+
+  // ── SOUND ENGINE ──────────────────────────────────────────
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  let audioCtx = null;
+
+  function getCtx() {
+    if (!audioCtx) audioCtx = new AudioCtx();
+    return audioCtx;
+  }
+
+  function playCorrect(combo) {
+    const ctx = getCtx();
+    const now = ctx.currentTime;
+    // Scale up with combo
+    let notes = [523.25, 659.25, 783.99, 1046.50];
+    if (combo >= 3) notes = [523.25, 659.25, 783.99, 987.77, 1046.50, 1318.51];
+
+    notes.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, now + i * 0.09);
+      gain.gain.setValueAtTime(0, now + i * 0.09);
+      gain.gain.linearRampToValueAtTime(0.25, now + i * 0.09 + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.09 + 0.32);
+      osc.start(now + i * 0.09);
+      osc.stop(now + i * 0.09 + 0.4);
+    });
+
+    if (combo >= 3) {
+      const shimmer = ctx.createOscillator();
+      const shimGain = ctx.createGain();
+      shimmer.connect(shimGain); shimGain.connect(ctx.destination);
+      shimmer.type = 'triangle';
+      shimmer.frequency.setValueAtTime(1318.51, now + 0.5);
+      shimGain.gain.setValueAtTime(0.12, now + 0.5);
+      shimGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.1);
+      shimmer.start(now + 0.5); shimmer.stop(now + 1.2);
+    }
+  }
+
+  function playStreak5() {
+    const ctx = getCtx();
+    const now = ctx.currentTime;
+    [523,659,784,1047,1319].forEach((f,i) => {
+      const o = ctx.createOscillator(), g = ctx.createGain();
+      o.connect(g); g.connect(ctx.destination);
+      o.type = 'sine'; o.frequency.value = f;
+      g.gain.setValueAtTime(0, now+i*0.08);
+      g.gain.linearRampToValueAtTime(0.3, now+i*0.08+0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, now+i*0.08+0.45);
+      o.start(now+i*0.08); o.stop(now+i*0.08+0.5);
+    });
+  }
+
+  function playWrong() {
+    const ctx = getCtx();
+    const now = ctx.currentTime;
+    const osc1 = ctx.createOscillator();
+    const gain1 = ctx.createGain();
+    osc1.connect(gain1); gain1.connect(ctx.destination);
+    osc1.type = 'sawtooth';
+    osc1.frequency.setValueAtTime(220, now);
+    osc1.frequency.linearRampToValueAtTime(130, now + 0.25);
+    gain1.gain.setValueAtTime(0.22, now);
+    gain1.gain.exponentialRampToValueAtTime(0.0001, now + 0.4);
+    osc1.start(now); osc1.stop(now + 0.45);
+
+    const osc2 = ctx.createOscillator();
+    const gain2 = ctx.createGain();
+    osc2.connect(gain2); gain2.connect(ctx.destination);
+    osc2.type = 'square';
+    osc2.frequency.setValueAtTime(185, now + 0.05);
+    osc2.frequency.linearRampToValueAtTime(110, now + 0.3);
+    gain2.gain.setValueAtTime(0.1, now + 0.05);
+    gain2.gain.exponentialRampToValueAtTime(0.0001, now + 0.45);
+    osc2.start(now + 0.05); osc2.stop(now + 0.5);
+  }
+
+  function onCorrect(qIdx) {
+    streak++;
+    if (streak % 5 === 0) {
+      triggerStreakFlash(`🔥 ${streak} IN A ROW!`);
+      playStreak5();
+    }
+    if (streak >= 3) {
+      comboMultiplier = Math.floor(streak / 3) + 1;
+      playCorrect(comboMultiplier);
+    } else {
+      playCorrect(1);
+    }
+    triggerGoldFlash();
+    animateMascot(true);
+    showEncourage();
+    updateHUD();
+  }
+
+  function onWrong(qIdx) {
+    streak = 0; comboMultiplier = 1;
+    wrongWeights[qIdx] = (wrongWeights[qIdx] || 0) + 1;
+    playWrong();
+    animateMascot(false);
+    updateHUD();
+    if (currentMode === 'sudden' && !quizDead) {
+      quizDead = true;
+      setTimeout(() => {
+        document.getElementById('quizContainer').innerHTML = `
+          <div style="background:rgba(192,57,43,0.15);border:1px solid rgba(192,57,43,0.4);border-radius:14px;padding:36px 24px;text-align:center;margin-top:12px;">
+            <div style="font-size:48px;margin-bottom:12px;">💀</div>
+            <div style="font-family:'Playfair Display';font-size:24px;color:#e07060;margin-bottom:8px;">Sudden Death!</div>
+            <div style="font-size:14px;color:var(--text-muted);margin-bottom:20px;">One wrong answer ends it all. Madison is disappointed.</div>
+            <button onclick="startQuiz()" style="padding:10px 24px;background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:var(--navy);border:none;border-radius:8px;font-family:'DM Sans';font-size:13px;font-weight:500;cursor:pointer;">Try Again</button>
+          </div>`;
+      }, 600);
+    }
+  }
+
+  function selectChoice(el, qIdx, origIdx, correctOrig) {
+    const choices = document.querySelectorAll(`#choices-${qIdx} .q-choice`);
+    if (el.classList.contains('locked')) return;
+    choices.forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById('check-' + qIdx).disabled = false;
+  }
+
+  function checkMC(qIdx, correctOrig) {
+    const choices = document.querySelectorAll(`#choices-${qIdx} .q-choice`);
+    const selected = document.querySelector(`#choices-${qIdx} .q-choice.selected`);
+    if (!selected) return;
+
+    if (speedTimer && currentSpeedQIdx === qIdx) {
+      clearInterval(speedTimer);
+      speedTimer = null;
+      document.getElementById('timerDisplay').style.display = 'none';
+    }
+
+    const selectedOrig = parseInt(selected.getAttribute('data-orig'));
+    const isCorrect = selectedOrig === correctOrig;
+    const feedback = document.getElementById('feedback-' + qIdx);
+    const card = document.getElementById('qcard-' + qIdx);
+    const q = activeQuestions[qIdx];
+
+    choices.forEach(c => {
+      c.classList.add('locked');
+      const orig = parseInt(c.getAttribute('data-orig'));
+      if (orig === correctOrig) c.classList.add('correct-ans');
+      else if (c.classList.contains('selected') && !isCorrect) c.classList.add('wrong-ans');
+    });
+
+    document.getElementById('check-' + qIdx).disabled = true;
+
+    if (isCorrect) {
+      feedback.className = 'q-feedback correct show';
+      feedback.innerHTML = '✓ Correct! ' + q.explain;
+      card.classList.add('correct-card');
+      card.classList.add('gold-pulse');
+      correctCount++;
+      onCorrect(qIdx);
+    } else {
+      feedback.className = 'q-feedback incorrect show';
+      feedback.innerHTML = '✗ Incorrect. ' + q.explain;
+      card.classList.add('wrong-card');
+      missedIndices.push(qIdx);
+      onWrong(qIdx);
+    }
+
+    answeredCount++;
+    updateScoreBar();
+
+    // advance speed timer to next question
+    if (currentMode === 'speed' && !quizDead) {
+      const nextMC = activeQuestions.findIndex((q2, i2) => i2 > qIdx && (q2.type === 'mc' || q2.type === 'tf'));
+      if (nextMC >= 0) startSpeedTimer(nextMC);
+    }
+  }
+
+  function revealRubric(qIdx) {
+    const rubric = document.getElementById('rubric-' + qIdx);
+    rubric.classList.toggle('show');
+  }
+
+  function submitAll() {
+    if (speedTimer) { clearInterval(speedTimer); speedTimer = null; }
+    document.getElementById('timerDisplay').style.display = 'none';
+
+    activeQuestions.forEach((q, i) => {
+      if (q.type === 'mc' || q.type === 'tf') {
+        const selected = document.querySelector(`#choices-${i} .q-choice.selected`);
+        const locked = document.querySelector(`#choices-${i} .q-choice.locked`);
+        if (selected && !locked) checkMC(i, q.answer);
+      }
+    });
+
+    const total = activeQuestions.filter(q => q.type !== 'frq').length;
+    const pct = total > 0 ? Math.round((correctCount / total) * 100) : 0;
+
+    // AP Score calculation
+    const apScore = pct >= 90 ? 5 : pct >= 75 ? 4 : pct >= 60 ? 3 : pct >= 45 ? 2 : 1;
+    const apColors = { 5:'#4ec9c0', 4:'var(--gold)', 3:'#88aaee', 2:'#e8a844', 1:'#e07060' };
+    const apLabels = { 5:'Extremely Well Qualified', 4:'Well Qualified', 3:'Qualified', 2:'Possibly Qualified', 1:'No Recommendation' };
+
+    document.getElementById('apScoreNum').style.color = apColors[apScore];
+    document.getElementById('apScoreNum').textContent = apScore;
+    document.getElementById('apScoreLabel').textContent = apLabels[apScore];
+
+    const msgs = [
+      [90, '🏛️ Excellent! You\'re ready for exam day.'],
+      [75, '📚 Strong work — review your missed questions.'],
+      [60, '⚖️ Getting there — keep drilling the weak spots.'],
+      [0,  '📖 Keep studying — use the guide to review and retake.']
+    ];
+    const msg = msgs.find(([min]) => pct >= min)[1];
+
+    document.getElementById('resultScore').textContent = correctCount + ' / ' + total + '  (' + pct + '%)';
+    document.getElementById('resultMsg').textContent = msg;
+    document.getElementById('quizResults').style.display = 'block';
+    document.getElementById('quizResults').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    const reviewBtn = document.getElementById('reviewBtn');
+    reviewBtn.style.display = missedIndices.length > 0 ? 'inline-block' : 'none';
+  }
+
+  function reviewMissed() {
+    const missed = missedIndices.map(i => activeQuestions[i]);
+    if (missed.length === 0) return;
+    answeredCount = 0; correctCount = 0; missedIndices = [];
+    streak = 0; comboMultiplier = 1;
+    activeQuestions = missed;
+    document.getElementById('quizResults').style.display = 'none';
+    updateScoreBar();
+    updateHUD();
+    renderQuiz();
+    document.getElementById('quizContainer').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // ── FLASHCARD DATA ──────────────────────────────────────
+  const FLASHCARD_DATA = [
+    // Documents
+    { cat:'docs', front:'Federalist No. 10', back:'Madison argues a large republic controls factions better — diverse interests cancel each other out. No single faction can dominate.' },
+    { cat:'docs', front:'Federalist No. 51', back:'"Ambition must counteract ambition." Checks & balances protect liberty because men aren\'t angels.' },
+    { cat:'docs', front:'Federalist No. 70', back:'Hamilton argues for a single energetic president — one executive = accountability + quick decisions.' },
+    { cat:'docs', front:'Federalist No. 78', back:'Courts are the "least dangerous branch." Defends lifetime tenure + anticipates judicial review.' },
+    { cat:'docs', front:'Brutus No. 1', back:'Anti-Federalist argument: large republic = government too far from people. Necessary & Proper Clause would let Congress crush state power.' },
+    { cat:'docs', front:'Declaration of Independence', back:'All people have unalienable rights — life, liberty, pursuit of happiness. Government\'s power comes from consent of the governed. (Locke\'s social contract)' },
+    { cat:'docs', front:'Articles of Confederation', back:'America\'s first government — and a famous failure. Congress couldn\'t tax, enforce laws, or regulate trade. No president. No courts.' },
+    { cat:'docs', front:'Letter from Birmingham Jail', back:'MLK: an unjust law degrades human dignity. Citizens have a moral responsibility to disobey unjust laws openly and accept punishment.' },
+    // Cases
+    { cat:'cases', front:'Marbury v. Madison (1803)', back:'Established judicial review — Supreme Court can strike down laws that violate the Constitution. Foundation of court power.' },
+    { cat:'cases', front:'McCulloch v. Maryland (1819)', back:'Congress has implied powers (Necessary & Proper Clause). States cannot tax the federal government. Federal law is supreme.' },
+    { cat:'cases', front:'Schenck v. United States (1919)', back:'"Clear and present danger" test — free speech can be limited if it creates an immediate threat. Anti-draft leaflets during WWI not protected.' },
+    { cat:'cases', front:'Brown v. Board of Education (1954)', back:'"Separate but equal" is inherently unequal. Racial segregation in public schools is unconstitutional. Overturned Plessy v. Ferguson.' },
+    { cat:'cases', front:'Baker v. Carr (1962)', back:'Federal courts CAN hear cases about legislative apportionment. Paved way for "one person, one vote."' },
+    { cat:'cases', front:'Engel v. Vitale (1962)', back:'Government-sponsored prayer in public schools violates the Establishment Clause — even if voluntary.' },
+    { cat:'cases', front:'Gideon v. Wainwright (1963)', back:'Every criminal defendant has the right to an attorney. If they can\'t afford one, the state must provide one. (6th Amendment → states via 14th)' },
+    { cat:'cases', front:'Tinker v. Des Moines (1969)', back:'Students don\'t shed constitutional rights at the schoolhouse gate. Armbands = protected symbolic speech unless "substantial disruption."' },
+    { cat:'cases', front:'NYT Co. v. United States (1971)', back:'Government cannot use prior restraint to stop newspapers from printing the Pentagon Papers. Press freedom wins.' },
+    { cat:'cases', front:'Shaw v. Reno (1993)', back:'Race cannot be the predominant factor in drawing congressional districts. Racial gerrymandering violates Equal Protection.' },
+    { cat:'cases', front:'United States v. Lopez (1995)', back:'Congress cannot use Commerce Clause to ban guns in school zones. Landmark limits on federal power — local non-economic activity is off limits.' },
+    { cat:'cases', front:'Citizens United v. FEC (2010)', back:'Corporations & unions have 1st Amendment rights. Government cannot limit independent political expenditures. Led to Super PACs.' },
+    // Amendments
+    { cat:'amends', front:'1st Amendment — RAPPS', back:'Religion, Assembly, Press, Petition, Speech — the five freedoms. Most tested amendment on the AP exam.' },
+    { cat:'amends', front:'4th Amendment', back:'No unreasonable searches and seizures. Requires warrants with probable cause. Excludes illegally obtained evidence.' },
+    { cat:'amends', front:'5th Amendment', back:'No self-incrimination. No double jeopardy. Due Process Clause. Grand jury for federal crimes.' },
+    { cat:'amends', front:'6th Amendment', back:'Right to speedy, public trial by jury. Right to confront witnesses. Right to an attorney (Gideon).' },
+    { cat:'amends', front:'14th Amendment', back:'Citizenship, Due Process, Equal Protection — applies Bill of Rights to states via incorporation doctrine.' },
+    // Numbers
+    { cat:'numbers', front:'Electoral College', back:'538 total electors. 270 needed to win. Each state gets House seats + 2 Senate seats. DC gets 3 (23rd Amendment).' },
+    { cat:'numbers', front:'Senate Thresholds', back:'51 = simple majority | 60 = cloture (end filibuster) | 67 = convict/remove president or ratify treaty' },
+    { cat:'numbers', front:'Amendment Process', back:'2/3 of both chambers propose → 3/4 of states (38) ratify. President has NO role.' },
+    { cat:'numbers', front:'Supreme Court', back:'9 justices. 5 votes to decide. 4 votes for certiorari (Rule of Four). Lifetime tenure.' },
+    { cat:'numbers', front:'Impeachment', back:'House: simple majority to impeach (218+). Senate: 2/3 to convict and remove (67+).' },
+  ];
+
+  // ── FLASHCARD ENGINE ──────────────────────────────────
+  let fcCards = [];
+  let fcIndex = 0;
+  let fcFlipped = false;
+  let fcKnown = new Set();
+  let fcFcInit = false;
+
+  function initFlashcards() {
+    if (!fcFcInit) { startFlashcards(); fcFcInit = true; }
+  }
+
+  function startFlashcards() {
+    const cat = document.getElementById('fcCategory').value;
+    fcCards = shuffle(cat === 'all' ? FLASHCARD_DATA : FLASHCARD_DATA.filter(c => c.cat === cat));
+    fcIndex = 0; fcFlipped = false; fcKnown = new Set();
+    document.getElementById('fcEmpty').style.display = 'none';
+    document.getElementById('fcDeck').style.display = 'block';
+    renderFlashcard();
+  }
+
+  function renderFlashcard() {
+    if (fcCards.length === 0) return;
+    const card = fcCards[fcIndex];
+    document.getElementById('fcFrontText').innerHTML = card.front;
+    document.getElementById('fcBackText').innerHTML = card.back;
+    document.getElementById('fcCounter').textContent = `Card ${fcIndex + 1} of ${fcCards.length} · ${fcKnown.size} known`;
+    document.getElementById('fcProgressFill').style.width = ((fcIndex + 1) / fcCards.length * 100) + '%';
+    // Reset flip
+    fcFlipped = false;
+    document.getElementById('fcCardInner').classList.remove('flipped');
+  }
+
+  function flipCard() {
+    fcFlipped = !fcFlipped;
+    document.getElementById('fcCardInner').classList.toggle('flipped', fcFlipped);
+  }
+
+  function fcNext() {
+    if (fcIndex < fcCards.length - 1) { fcIndex++; renderFlashcard(); }
+    else { renderFlashcard(); } // stay on last
+  }
+
+  function fcPrev() {
+    if (fcIndex > 0) { fcIndex--; renderFlashcard(); }
+  }
+
+  function fcMarkRight() {
+    fcKnown.add(fcIndex);
+    fcNext();
+  }
+
+  function fcMarkWrong() {
+    fcKnown.delete(fcIndex);
+    // Move this card to later in the deck (spaced repetition)
+    const missed = fcCards.splice(fcIndex, 1)[0];
+    const insertAt = Math.min(fcIndex + 3 + Math.floor(Math.random() * 3), fcCards.length);
+    fcCards.splice(insertAt, 0, missed);
+    renderFlashcard();
+  }
+
+  // Touch/swipe support for flashcards
+  let fcTouchStartX = 0;
+  document.addEventListener('touchstart', e => { if (document.getElementById('flashcards').classList.contains('active')) fcTouchStartX = e.touches[0].clientX; });
+  document.addEventListener('touchend', e => {
+    if (!document.getElementById('flashcards').classList.contains('active')) return;
+    const dx = e.changedTouches[0].clientX - fcTouchStartX;
+    if (Math.abs(dx) > 60) { if (dx < 0) fcNext(); else fcPrev(); }
+  });
+</script>
+</body>
+</html>
