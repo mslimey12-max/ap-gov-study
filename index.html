@@ -456,7 +456,7 @@
   <header class="header">
     <div class="header-eyebrow">Complete Study Reference</div>
     <h1>AP U.S. Government<br><em>&amp; Politics</em></h1>
-    <p class="header-sub">9 Documents · 15 Court Cases · Key Amendments · Exam Strategy · 100 Practice Questions</p>
+    <p class="header-sub">9 Documents · 15 Court Cases · Key Amendments · Key Terms &amp; Models · Exam Strategy · 100 Practice Questions</p>
     <div class="header-rule"></div>
   </header>
 
@@ -483,6 +483,7 @@
     <button class="nav-tab" onclick="switchTab('amends',this)">Amendments</button>
     <button class="nav-tab" onclick="switchTab('numbers',this)">Numbers</button>
     <button class="nav-tab" onclick="switchTab('tips',this)">Exam Tips</button>
+    <button class="nav-tab" onclick="switchTab('terms',this)">📖 Terms</button>
     <button class="nav-tab" onclick="switchTab('quiz',this); initQuiz()">🎯 Quiz</button>
     <button class="nav-tab" onclick="switchTab('flashcards',this); initFlashcards()">🃏 Cards</button>
   </nav>
@@ -1247,6 +1248,435 @@
 
   </section>
 
+  <!-- TERMS -->
+  <section id="terms" class="section">
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input class="search-bar" type="text" placeholder="Search terms..." oninput="filterSection(this,'terms')">
+    </div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">Key vocabulary, models, and concepts tested on the AP U.S. Gov exam — organized by topic.</p>
+
+    <!-- DEMOCRACY & IDEOLOGY -->
+    <div class="amend-section-title">Democracy Models &amp; Ideals</div>
+
+    <div class="card" data-keywords="participatory democracy direct citizen input grassroots">
+      <div class="principle-tag">Types of Democracy</div>
+      <div class="card-title">Participatory Democracy</div>
+      <div class="card-body" style="margin-top:6px;">A model of democracy that emphasizes broad, active citizen participation in politics — more than just voting. Grassroots organizing, referendums, and town halls reflect this ideal.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Compare</button>
+      <div class="extra"><strong>Compare to:</strong> Pluralist democracy (groups compete) and Elite democracy (educated few govern). The AP exam loves asking you to match a scenario to the right model.</div>
+    </div>
+
+    <div class="card" data-keywords="pluralist democracy interest groups competition Madison factions">
+      <div class="principle-tag">Types of Democracy</div>
+      <div class="card-title">Pluralist Democracy</div>
+      <div class="card-body" style="margin-top:6px;">Policy is made through competition among organized interest groups. No single group dominates permanently. Directly tied to <strong>Federalist No. 10</strong> — Madison's vision of faction management.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Expand</button>
+      <div class="extra"><strong>Key idea:</strong> Government acts as an arena, not the decision-maker. Interest groups push and pull until policy reflects a balance of competing interests.</div>
+    </div>
+
+    <div class="card" data-keywords="elite democracy educated few representative republic founders">
+      <div class="principle-tag">Types of Democracy</div>
+      <div class="card-title">Elite Democracy</div>
+      <div class="card-body" style="margin-top:6px;">A model arguing that a small, educated, and talented minority should govern on behalf of the majority. Founders like Hamilton leaned toward this — reflected in the Electoral College and appointed Senate (pre-17th Amendment).</div>
+    </div>
+
+    <div class="card" data-keywords="popular sovereignty consent governed power people government">
+      <div class="principle-tag">Core Democratic Tenet</div>
+      <div class="card-title">Popular Sovereignty</div>
+      <div class="card-body" style="margin-top:6px;">Government authority comes from the people. Found in the Declaration of Independence ("consent of the governed") and the Constitution's Preamble ("We the People").</div>
+    </div>
+
+    <div class="card" data-keywords="social contract Locke Rousseau government legitimacy rights">
+      <div class="principle-tag">Core Democratic Tenet</div>
+      <div class="card-title">Social Contract Theory</div>
+      <div class="card-body" style="margin-top:6px;">People surrender some freedoms to government in exchange for protection of natural rights. Rooted in <strong>John Locke</strong>. Central to the Declaration of Independence — if government breaks the contract, people may overthrow it.</div>
+    </div>
+
+    <div class="card" data-keywords="natural rights unalienable life liberty property Locke">
+      <div class="principle-tag">Core Democratic Tenet</div>
+      <div class="card-title">Natural Rights</div>
+      <div class="card-body" style="margin-top:6px;">Rights that belong to all people by nature, not granted by government. Locke: life, liberty, property. Jefferson adapted this to <strong>life, liberty, and the pursuit of happiness</strong> in the Declaration.</div>
+    </div>
+
+    <div class="card" data-keywords="republicanism representative government elected officials republic">
+      <div class="principle-tag">Core Democratic Tenet</div>
+      <div class="card-title">Republicanism</div>
+      <div class="card-body" style="margin-top:6px;">Citizens elect representatives to govern on their behalf — as opposed to direct democracy. The U.S. system is a republic. Connected to Federalist 10's argument that elected filters refine public opinion.</div>
+    </div>
+
+    <!-- LEGISLATIVE MODELS -->
+    <div class="amend-section-title">Congressional &amp; Representation Models</div>
+
+    <div class="card" data-keywords="delegate model representative vote constituents instructions">
+      <div class="principle-tag">Models of Representation</div>
+      <div class="card-title">Delegate Model</div>
+      <div class="card-body" style="margin-top:6px;">A legislator acts as a <strong>direct agent</strong> of constituents — votes the way their district wants, even if they personally disagree.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ All three models</button>
+      <div class="extra">
+        <strong>Trustee Model:</strong> The legislator uses their own best judgment, regardless of constituent opinion (Edmund Burke). Elected to think, not just follow.<br><br>
+        <strong>Politico Model:</strong> Hybrid — switches between delegate and trustee depending on the issue and political context. Most realistic description of Congress.
+        <div class="mnemonic"><strong>D = Does what district says · T = Thinks for themselves · P = Picks and chooses</strong></div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="trustee model Edmund Burke legislator own judgment">
+      <div class="principle-tag">Models of Representation</div>
+      <div class="card-title">Trustee Model</div>
+      <div class="card-body" style="margin-top:6px;">A legislator acts on their own independent judgment of the public good — elected for their wisdom, not just to mirror opinion. Associated with <strong>Edmund Burke</strong>.</div>
+    </div>
+
+    <div class="card" data-keywords="politico model hybrid delegate trustee switches">
+      <div class="principle-tag">Models of Representation</div>
+      <div class="card-title">Politico Model</div>
+      <div class="card-body" style="margin-top:6px;">Legislators switch between delegate and trustee roles depending on the political salience of an issue. Most accurate description of how actual Congress members behave.</div>
+    </div>
+
+    <div class="card" data-keywords="gerrymandering redistricting partisan cracking packing">
+      <div class="principle-tag">Elections</div>
+      <div class="card-title">Gerrymandering</div>
+      <div class="card-body" style="margin-top:6px;">Manipulating the drawing of electoral district boundaries to favor a political party or group. Two key techniques: <strong>cracking</strong> (splitting opposition voters across districts) and <strong>packing</strong> (concentrating opposition voters in one district).</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Cases</button>
+      <div class="extra"><strong>Baker v. Carr (1962):</strong> Courts can rule on redistricting. <strong>Shaw v. Reno (1993):</strong> Racial gerrymandering violates Equal Protection. <strong>Partisan gerrymandering</strong> is harder to challenge — federal courts have largely stepped back from it.</div>
+    </div>
+
+    <div class="card" data-keywords="filibuster cloture Senate unlimited debate 60 votes">
+      <div class="principle-tag">Legislative Process</div>
+      <div class="card-title">Filibuster &amp; Cloture</div>
+      <div class="card-body" style="margin-top:6px;"><strong>Filibuster:</strong> A Senate tactic of prolonged speech or delay to block a vote. <strong>Cloture:</strong> The mechanism to end a filibuster — requires <strong>60 votes</strong> (3/5 of the Senate). The House has no filibuster.</div>
+    </div>
+
+    <div class="card" data-keywords="divided government gridlock president congress different party">
+      <div class="principle-tag">Legislative Process</div>
+      <div class="card-title">Divided Government</div>
+      <div class="card-body" style="margin-top:6px;">When the president is from one party and at least one chamber of Congress is controlled by the other. Often leads to <strong>gridlock</strong> — difficulty passing major legislation.</div>
+    </div>
+
+    <div class="card" data-keywords="logrolling vote trading legislation Congress members">
+      <div class="principle-tag">Legislative Process</div>
+      <div class="card-title">Logrolling</div>
+      <div class="card-body" style="margin-top:6px;">When legislators trade votes — "I'll vote for your bill if you vote for mine." Common way to build coalitions in Congress, especially for spending bills and earmarks.</div>
+    </div>
+
+    <div class="card" data-keywords="pork barrel earmarks federal spending district projects">
+      <div class="principle-tag">Legislative Process</div>
+      <div class="card-title">Pork Barrel Spending / Earmarks</div>
+      <div class="card-body" style="margin-top:6px;">Federal funding secured for a specific district or state, often benefiting a legislator's own constituents. Also called <strong>earmarks</strong>. Used to win votes for broader legislation.</div>
+    </div>
+
+    <!-- EXECUTIVE & BUREAUCRACY -->
+    <div class="amend-section-title">Executive Branch &amp; Bureaucracy</div>
+
+    <div class="card" data-keywords="executive order president bypass Congress unilateral action">
+      <div class="principle-tag">Presidential Powers</div>
+      <div class="card-title">Executive Orders</div>
+      <div class="card-body" style="margin-top:6px;">Directives issued by the president that carry the force of law without congressional approval. An informal/unilateral presidential power. Can be overturned by Congress or the courts.</div>
+    </div>
+
+    <div class="card" data-keywords="signing statement president bill interpretation reservations">
+      <div class="principle-tag">Presidential Powers</div>
+      <div class="card-title">Signing Statements</div>
+      <div class="card-body" style="margin-top:6px;">Written statements issued by the president when signing legislation, explaining how they interpret — or plan to selectively enforce — parts of a law. An informal expansion of presidential power.</div>
+    </div>
+
+    <div class="card" data-keywords="veto pocket veto override Congress president bill">
+      <div class="principle-tag">Presidential Powers</div>
+      <div class="card-title">Veto &amp; Pocket Veto</div>
+      <div class="card-body" style="margin-top:6px;"><strong>Veto:</strong> President rejects a bill — Congress can override with 2/3 of both chambers. <strong>Pocket veto:</strong> If Congress adjourns within 10 days and president doesn't sign, the bill dies without a veto override option.</div>
+    </div>
+
+    <div class="card" data-keywords="iron triangle bureaucracy interest groups Congress agencies">
+      <div class="principle-tag">Bureaucracy</div>
+      <div class="card-title">Iron Triangle</div>
+      <div class="card-body" style="margin-top:6px;">A stable, mutually beneficial 3-way relationship between a <strong>congressional committee</strong>, a <strong>federal agency</strong>, and a <strong>relevant interest group</strong>. Each benefits the others in policymaking.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Example</button>
+      <div class="extra"><strong>Example:</strong> The House Agriculture Committee + the USDA + the American Farm Bureau. They cooperate to shape farm policy for mutual benefit.<br><br><strong>Issue Networks</strong> = a looser, more fluid version of the iron triangle — includes media, think tanks, academics, more actors.</div>
+    </div>
+
+    <div class="card" data-keywords="issue networks policy loosely connected actors media think tanks">
+      <div class="principle-tag">Bureaucracy</div>
+      <div class="card-title">Issue Networks</div>
+      <div class="card-body" style="margin-top:6px;">A more fluid and open policy community than the iron triangle — includes interest groups, academics, journalists, think tanks, and bureaucrats who all influence policy in a given area. Less stable than iron triangles.</div>
+    </div>
+
+    <div class="card" data-keywords="bureaucratic discretion rulemaking authority implementation policy">
+      <div class="principle-tag">Bureaucracy</div>
+      <div class="card-title">Discretionary &amp; Rulemaking Authority</div>
+      <div class="card-body" style="margin-top:6px;"><strong>Discretionary authority:</strong> Agencies decide how to implement broadly written laws. <strong>Rulemaking authority:</strong> Agencies create specific regulations that carry the force of law. Both represent ways the bureaucracy makes policy.</div>
+    </div>
+
+    <!-- JUDICIARY -->
+    <div class="amend-section-title">Judicial Branch</div>
+
+    <div class="card" data-keywords="judicial review Marbury Madison unconstitutional strike down law">
+      <div class="principle-tag">Judicial Power</div>
+      <div class="card-title">Judicial Review</div>
+      <div class="card-body" style="margin-top:6px;">The power of courts to review laws and executive actions and declare them unconstitutional. Established in <strong>Marbury v. Madison (1803)</strong>. Not explicitly in the Constitution — inferred by Chief Justice Marshall.</div>
+    </div>
+
+    <div class="card" data-keywords="judicial activism restraint courts interpret broadly narrowly deference">
+      <div class="principle-tag">Judicial Philosophy</div>
+      <div class="card-title">Judicial Activism vs. Judicial Restraint</div>
+      <div class="card-body" style="margin-top:6px;"><strong>Judicial Activism:</strong> Courts willingly strike down laws and use constitutional interpretation to address social issues (e.g., Brown v. Board). <strong>Judicial Restraint:</strong> Courts defer to elected branches and interpret the Constitution narrowly, only striking laws clearly unconstitutional.</div>
+    </div>
+
+    <div class="card" data-keywords="originalism living constitution textualism interpretation Scalia Ginsburg">
+      <div class="principle-tag">Judicial Philosophy</div>
+      <div class="card-title">Originalism vs. Living Constitution</div>
+      <div class="card-body" style="margin-top:6px;"><strong>Originalism:</strong> Interpret the Constitution according to its original meaning at ratification (Scalia). <strong>Living Constitution:</strong> The Constitution's meaning evolves with society (Brennan, Ginsburg). Major fault line in confirmation hearings.</div>
+    </div>
+
+    <div class="card" data-keywords="stare decisis precedent prior rulings courts follow">
+      <div class="principle-tag">Judicial Process</div>
+      <div class="card-title">Stare Decisis</div>
+      <div class="card-body" style="margin-top:6px;">Latin for "let the decision stand." Courts generally follow prior rulings (<strong>precedents</strong>) for consistency and stability. The Supreme Court can overturn precedent (e.g., Dobbs overturning Roe), but this is rare and significant.</div>
+    </div>
+
+    <div class="card" data-keywords="amicus curiae brief friend of court interest group opinion case">
+      <div class="principle-tag">Judicial Process</div>
+      <div class="card-title">Amicus Curiae Brief</div>
+      <div class="card-body" style="margin-top:6px;">A "friend of the court" brief filed by a non-party (often interest groups or governments) to offer information or perspective in a Supreme Court case. One way interest groups influence judicial outcomes.</div>
+    </div>
+
+    <div class="card" data-keywords="writ certiorari cert petition Supreme Court agree hear case">
+      <div class="principle-tag">Judicial Process</div>
+      <div class="card-title">Writ of Certiorari</div>
+      <div class="card-body" style="margin-top:6px;">An order from the Supreme Court to a lower court to send up the case record for review. The Court grants "cert" using the <strong>Rule of Four</strong> (4 of 9 justices must agree). The vast majority of petitions are denied.</div>
+    </div>
+
+    <!-- FEDERALISM -->
+    <div class="amend-section-title">Federalism</div>
+
+    <div class="card" data-keywords="enumerated expressed powers Congress Article I Constitution written">
+      <div class="principle-tag">Federalism</div>
+      <div class="card-title">Enumerated (Expressed) Powers</div>
+      <div class="card-body" style="margin-top:6px;">Powers explicitly listed in the Constitution for Congress (Article I, Section 8): declare war, coin money, regulate commerce, tax, etc. The foundation of federal authority.</div>
+    </div>
+
+    <div class="card" data-keywords="implied powers necessary proper clause McCulloch elastic">
+      <div class="principle-tag">Federalism</div>
+      <div class="card-title">Implied Powers &amp; the Elastic Clause</div>
+      <div class="card-body" style="margin-top:6px;">Powers not explicitly listed but inferred from the <strong>Necessary and Proper Clause</strong> (Article I, §8). McCulloch v. Maryland confirmed Congress can use implied powers to carry out its expressed powers. Called "elastic" because it stretches federal authority.</div>
+    </div>
+
+    <div class="card" data-keywords="reserved powers 10th amendment states people not delegated">
+      <div class="principle-tag">Federalism</div>
+      <div class="card-title">Reserved Powers (10th Amendment)</div>
+      <div class="card-body" style="margin-top:6px;">Powers not granted to the federal government or prohibited to states are <strong>reserved to the states or the people</strong>. Foundation of state authority. Key in U.S. v. Lopez — Congress exceeded its Commerce power into state territory.</div>
+    </div>
+
+    <div class="card" data-keywords="concurrent powers shared federal state taxing courts police">
+      <div class="principle-tag">Federalism</div>
+      <div class="card-title">Concurrent Powers</div>
+      <div class="card-body" style="margin-top:6px;">Powers shared by both the federal and state governments: taxing, borrowing money, establishing courts, building roads. Neither level has exclusive control over these.</div>
+    </div>
+
+    <div class="card" data-keywords="categorical grants block grants federal funding conditions strings">
+      <div class="principle-tag">Federalism</div>
+      <div class="card-title">Categorical vs. Block Grants</div>
+      <div class="card-body" style="margin-top:6px;"><strong>Categorical grants:</strong> Federal money given for a specific purpose with strict conditions (e.g., school lunch programs). <strong>Block grants:</strong> Lump sum given to states with few conditions — states decide how to use it. Republicans generally prefer block grants; Democrats favor categorical.</div>
+    </div>
+
+    <div class="card" data-keywords="unfunded mandates federal requirements no money states comply">
+      <div class="principle-tag">Federalism</div>
+      <div class="card-title">Unfunded Mandates</div>
+      <div class="card-body" style="margin-top:6px;">Federal laws that require states to perform certain actions without providing funding. Controversial — states must bear the cost of complying with federal policy. The Unfunded Mandates Reform Act (1995) tried to limit them.</div>
+    </div>
+
+    <div class="card" data-keywords="dual federalism layer cake separate state federal domains">
+      <div class="principle-tag">Federalism</div>
+      <div class="card-title">Dual vs. Cooperative Federalism</div>
+      <div class="card-body" style="margin-top:6px;"><strong>Dual (Layer Cake):</strong> Federal and state governments operate in separate, distinct spheres — pre-New Deal. <strong>Cooperative (Marble Cake):</strong> Federal and state governments share functions and collaborate — modern era. <strong>New Federalism:</strong> Reagan-era effort to return power to states via block grants.</div>
+    </div>
+
+    <!-- VOTING & ELECTIONS -->
+    <div class="amend-section-title">Voting Models &amp; Political Participation</div>
+
+    <div class="card" data-keywords="rational choice voting model self-interest costs benefits calculation">
+      <div class="principle-tag">Models of Voting Behavior</div>
+      <div class="card-title">Rational Choice Voting</div>
+      <div class="card-body" style="margin-top:6px;">Voters make decisions by calculating their self-interest — voting for the candidate whose policies will benefit them most. Assumes voters act as rational, informed utility-maximizers.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ All four models</button>
+      <div class="extra">
+        <strong>Retrospective Voting:</strong> Voters reward or punish incumbents based on past performance — especially the economy.<br><br>
+        <strong>Prospective Voting:</strong> Voters choose based on candidates' future policy promises, not past record.<br><br>
+        <strong>Party-Line Voting:</strong> Voters consistently vote for the same political party regardless of candidates or issues — driven by party identification.
+        <div class="mnemonic"><strong>RRPP:</strong> Rational, Retrospective, Prospective, Party-line</div>
+      </div>
+    </div>
+
+    <div class="card" data-keywords="retrospective voting throw the rascals out economy incumbent">
+      <div class="principle-tag">Models of Voting Behavior</div>
+      <div class="card-title">Retrospective Voting</div>
+      <div class="card-body" style="margin-top:6px;">Voters judge incumbents on past performance. If the economy is good, re-elect. If not, vote them out. Reagan's "Are you better off than you were four years ago?" is the classic example.</div>
+    </div>
+
+    <div class="card" data-keywords="prospective voting future promises platform candidate policy">
+      <div class="principle-tag">Models of Voting Behavior</div>
+      <div class="card-title">Prospective Voting</div>
+      <div class="card-body" style="margin-top:6px;">Voters choose the candidate whose future policy promises they most prefer. Focuses on platforms, campaign promises, and policy positions rather than track record.</div>
+    </div>
+
+    <div class="card" data-keywords="party identification party line voting partisan affiliation loyalty">
+      <div class="principle-tag">Models of Voting Behavior</div>
+      <div class="card-title">Party-Line Voting</div>
+      <div class="card-body" style="margin-top:6px;">Voters consistently support candidates from one party regardless of the individual or specific issues. Party identification is the single best predictor of vote choice in the United States.</div>
+    </div>
+
+    <div class="card" data-keywords="voter turnout registration socioeconomic education age race">
+      <div class="principle-tag">Political Participation</div>
+      <div class="card-title">Factors Affecting Voter Turnout</div>
+      <div class="card-body" style="margin-top:6px;">Key factors that increase turnout: <strong>higher education, higher income, older age, competitive elections, easy registration laws, high political efficacy</strong>. Presidential elections draw more voters than midterm or local elections.</div>
+    </div>
+
+    <div class="card" data-keywords="political efficacy belief vote matters government responsive trust">
+      <div class="principle-tag">Political Participation</div>
+      <div class="card-title">Political Efficacy</div>
+      <div class="card-body" style="margin-top:6px;"><strong>Internal efficacy:</strong> Belief that you understand politics and your participation matters. <strong>External efficacy:</strong> Belief that the government is actually responsive to citizen demands. Both predict likelihood of political participation.</div>
+    </div>
+
+    <div class="card" data-keywords="linkage institutions parties elections media interest groups connect citizens government">
+      <div class="principle-tag">Political Participation</div>
+      <div class="card-title">Linkage Institutions</div>
+      <div class="card-body" style="margin-top:6px;">Structures that connect citizens to the government: <strong>political parties, elections, interest groups, and the media</strong>. They translate public preferences into policy demands. A major Unit 5 concept.</div>
+    </div>
+
+    <!-- POLITICAL PARTIES & INTEREST GROUPS -->
+    <div class="amend-section-title">Political Parties &amp; Interest Groups</div>
+
+    <div class="card" data-keywords="single member district plurality winner take all two party system Duverger">
+      <div class="principle-tag">Party System</div>
+      <div class="card-title">Why Two Parties? (Duverger's Law)</div>
+      <div class="card-body" style="margin-top:6px;">The U.S. <strong>single-member district, winner-take-all</strong> (plurality) election system naturally produces two dominant parties. Third parties face impossible structural barriers: ballot access laws, media exclusion, and the "wasted vote" problem.</div>
+    </div>
+
+    <div class="card" data-keywords="party realignment dealignment critical election shift partisan">
+      <div class="principle-tag">Party Change</div>
+      <div class="card-title">Party Realignment &amp; Dealignment</div>
+      <div class="card-body" style="margin-top:6px;"><strong>Realignment:</strong> A major, durable shift in the partisan loyalties of large groups (e.g., the Solid South shifting from Democrat to Republican from the 1960s–80s). <strong>Dealignment:</strong> Voters abandon both parties, rising independents — no new stable alignment emerges.</div>
+    </div>
+
+    <div class="card" data-keywords="interest group lobbying PAC super PAC campaign finance outside spending">
+      <div class="principle-tag">Interest Groups</div>
+      <div class="card-title">Interest Groups &amp; Lobbying</div>
+      <div class="card-body" style="margin-top:6px;"><strong>Interest groups</strong> organize around shared goals to influence government. <strong>Lobbying</strong> = direct contact with legislators or their staff. <strong>PACs</strong> donate to campaigns; <strong>Super PACs</strong> (post-Citizens United) make unlimited independent expenditures.</div>
+    </div>
+
+    <div class="card" data-keywords="free rider problem collective action interest group public good">
+      <div class="principle-tag">Interest Groups</div>
+      <div class="card-title">Free Rider Problem</div>
+      <div class="card-body" style="margin-top:6px;">When a public good or policy benefit applies to everyone, individuals have an incentive to let others do the work (lobbying, activism) and "free ride." This discourages collective action and makes organizing difficult.</div>
+    </div>
+
+    <!-- PUBLIC OPINION & MEDIA -->
+    <div class="amend-section-title">Public Opinion &amp; the Media</div>
+
+    <div class="card" data-keywords="political socialization family peers school media events how beliefs form">
+      <div class="principle-tag">Ideology Formation</div>
+      <div class="card-title">Political Socialization</div>
+      <div class="card-body" style="margin-top:6px;">The process by which people develop their political beliefs and values. Key agents: <strong>family</strong> (most influential), school, peers, media, religion, and major political events (wars, recessions, crises).</div>
+    </div>
+
+    <div class="card" data-keywords="polling random sampling sampling error margin of error methodology">
+      <div class="principle-tag">Measuring Public Opinion</div>
+      <div class="card-title">Scientific Polling — Key Concepts</div>
+      <div class="card-body" style="margin-top:6px;"><strong>Random sampling:</strong> Every person has an equal chance of being selected — key to a valid poll. <strong>Sampling error / margin of error:</strong> The range within which the true answer lies (±%). <strong>Question wording</strong> can skew results. Larger samples reduce error.</div>
+    </div>
+
+    <div class="card" data-keywords="agenda setting media framing priming influence public opinion">
+      <div class="principle-tag">Media &amp; Politics</div>
+      <div class="card-title">Agenda Setting, Framing &amp; Priming</div>
+      <div class="card-body" style="margin-top:6px;"><strong>Agenda setting:</strong> Media decides what issues the public thinks about. <strong>Framing:</strong> Media influences how issues are understood (crime as individual vs. systemic). <strong>Priming:</strong> Media coverage shapes which issues voters use to evaluate politicians.</div>
+    </div>
+
+    <div class="card" data-keywords="traditional media partisan new media social media broadcast cable internet">
+      <div class="principle-tag">Media &amp; Politics</div>
+      <div class="card-title">Traditional vs. New/Partisan Media</div>
+      <div class="card-body" style="margin-top:6px;"><strong>Traditional media:</strong> Broadcast TV, major newspapers — aimed at broad audiences, professional journalism norms. <strong>New/partisan media:</strong> Cable news, social media, podcasts — often ideologically sorted. Has contributed to political polarization and information bubbles.</div>
+    </div>
+
+    <!-- FISCAL & ECONOMIC POLICY -->
+    <div class="amend-section-title">Economic Policy &amp; Ideology</div>
+
+    <div class="card" data-keywords="fiscal policy taxing spending government budget deficit surplus Keynesian">
+      <div class="principle-tag">Economic Policy</div>
+      <div class="card-title">Fiscal Policy</div>
+      <div class="card-body" style="margin-top:6px;">Government use of <strong>taxing and spending</strong> to influence the economy. <strong>Keynesian (liberal):</strong> Increase spending in recessions to stimulate demand. <strong>Supply-side (conservative):</strong> Cut taxes to incentivize investment and growth ("trickle-down").</div>
+    </div>
+
+    <div class="card" data-keywords="monetary policy Federal Reserve interest rates money supply inflation">
+      <div class="principle-tag">Economic Policy</div>
+      <div class="card-title">Monetary Policy &amp; the Federal Reserve</div>
+      <div class="card-body" style="margin-top:6px;">Control of the <strong>money supply and interest rates</strong> by the Federal Reserve (the Fed). Raising interest rates slows inflation; lowering them stimulates growth. The Fed is independent of Congress and the president.</div>
+    </div>
+
+    <div class="card" data-keywords="liberal conservative ideological spectrum economic social policy positions">
+      <div class="principle-tag">Political Ideology</div>
+      <div class="card-title">Liberal vs. Conservative — Policy Positions</div>
+      <div class="card-body" style="margin-top:6px;"><strong>Liberal/Democrat:</strong> Favors government intervention in the economy (regulation, social programs), more expansive civil rights, Keynesian stimulus. <strong>Conservative/Republican:</strong> Favors free markets, lower taxes, deregulation, supply-side economics, stricter social policy.</div>
+    </div>
+
+    <!-- KEY CONCEPTS -->
+    <div class="amend-section-title">Additional Must-Know Concepts</div>
+
+    <div class="card" data-keywords="checks balances separation powers three branches prevent tyranny">
+      <div class="principle-tag">Constitutional Principles</div>
+      <div class="card-title">Checks &amp; Balances</div>
+      <div class="card-body" style="margin-top:6px;">Each branch has specific powers to limit the others: Congress can override vetoes and impeach; president can veto and appoint justices; courts can declare laws unconstitutional. Prevents any one branch from becoming dominant. The entire mechanism of Federalist 51.</div>
+    </div>
+
+    <div class="card" data-keywords="selective incorporation 14th amendment Bill of Rights states due process">
+      <div class="principle-tag">Civil Liberties</div>
+      <div class="card-title">Selective Incorporation</div>
+      <div class="card-body" style="margin-top:6px;">The process by which the Supreme Court applies most Bill of Rights protections to state governments through the <strong>14th Amendment's Due Process Clause</strong> — case by case, right by right. Not all rights are incorporated (3rd, 7th Amendment largely not). Key cases: Gideon (6th), McDonald (2nd), Engel (1st).</div>
+    </div>
+
+    <div class="card" data-keywords="prior restraint censorship publication government press first amendment">
+      <div class="principle-tag">Civil Liberties</div>
+      <div class="card-title">Prior Restraint</div>
+      <div class="card-body" style="margin-top:6px;">Government censorship of material <strong>before</strong> it is published. Presumed unconstitutional under the First Amendment. The government faces a <strong>heavy presumption against prior restraint</strong> — established by NYT v. United States (1971).</div>
+    </div>
+
+    <div class="card" data-keywords="majority minority district voting rights act Shaw Reno race">
+      <div class="principle-tag">Civil Rights</div>
+      <div class="card-title">Majority-Minority Districts</div>
+      <div class="card-body" style="margin-top:6px;">Districts drawn so that racial or ethnic minorities form a majority of voters — intended to increase minority representation in Congress. Authorized under the Voting Rights Act of 1965. Challenged in <strong>Shaw v. Reno</strong> when race is the <em>only</em> factor.</div>
+    </div>
+
+    <div class="card" data-keywords="affirmative action race-conscious programs diversity higher education employment">
+      <div class="principle-tag">Civil Rights</div>
+      <div class="card-title">Affirmative Action</div>
+      <div class="card-body" style="margin-top:6px;">Policies that take race (or other characteristics) into account to benefit underrepresented groups. Highly contested — the Supreme Court has allowed some uses (diversity in education) while striking others (rigid quotas). Recent decisions have further restricted its use.</div>
+    </div>
+
+    <div class="card" data-keywords="campaign finance FECA BCRA bipartisan soft money hard money Citizens United">
+      <div class="principle-tag">Elections &amp; Campaign Finance</div>
+      <div class="card-title">Campaign Finance Timeline</div>
+      <div class="card-body" style="margin-top:6px;"><strong>FECA (1971):</strong> First major campaign finance law — required disclosure and set limits. <strong>BCRA/McCain-Feingold (2002):</strong> Banned soft money to parties, restricted issue ads. <strong>Citizens United (2010):</strong> Struck down limits on independent spending — opened door to Super PACs.</div>
+      <button class="expand-btn" onclick="toggleExtra(this)">▾ Hard vs. Soft Money</button>
+      <div class="extra"><strong>Hard money:</strong> Direct contributions to candidates — regulated and capped by the FEC. <strong>Soft money:</strong> Money donated to parties for "party-building" purposes — previously unregulated; BCRA banned it for parties but Citizens United opened outside spending.</div>
+    </div>
+
+    <div class="card" data-keywords="political action committee PAC super PAC outside spending FEC independent">
+      <div class="principle-tag">Elections &amp; Campaign Finance</div>
+      <div class="card-title">PACs vs. Super PACs</div>
+      <div class="card-body" style="margin-top:6px;"><strong>PACs (Political Action Committees):</strong> Can donate directly to candidates — capped at $5,000/candidate/election. <strong>Super PACs (post-Citizens United):</strong> Can raise and spend <em>unlimited</em> amounts on independent expenditures (ads, mailers) but CANNOT coordinate directly with campaigns.</div>
+    </div>
+
+    <div class="card" data-keywords="primary election caucus nomination process open closed types">
+      <div class="principle-tag">Elections</div>
+      <div class="card-title">Primary Elections &amp; Caucuses</div>
+      <div class="card-body" style="margin-top:6px;"><strong>Primary:</strong> Voters choose a party's nominee via direct voting. <strong>Caucus:</strong> Party members meet in person to deliberate and choose delegates (e.g., Iowa). <strong>Open primary:</strong> Any voter may participate. <strong>Closed primary:</strong> Only registered party members may vote.</div>
+    </div>
+
+    <div class="card" data-keywords="incumbency advantage name recognition casework fundraising reelection">
+      <div class="principle-tag">Elections</div>
+      <div class="card-title">Incumbency Advantage</div>
+      <div class="card-body" style="margin-top:6px;">Sitting members of Congress have major structural advantages in reelection: name recognition, casework for constituents, franking privilege (free mail), fundraising networks, and the ability to take credit for federal spending. House incumbents win reelection at extremely high rates (~90%+).</div>
+    </div>
+
+  </section>
+
   <!-- QUIZ -->
   <section id="quiz" class="section">
 
@@ -1279,6 +1709,7 @@
             <option value="cases">Supreme Court Cases</option>
             <option value="amends">Amendments</option>
             <option value="numbers">Numbers &amp; Ratios</option>
+            <option value="terms">Key Terms &amp; Models</option>
           </select>
           <select id="quizCount" style="padding:8px 12px;background:var(--navy-mid);border:1px solid var(--card-border);border-radius:8px;color:var(--cream);font-family:'DM Sans';font-size:13px;outline:none;">
             <option value="5">5 questions</option>
@@ -1341,6 +1772,7 @@
             <option value="cases">Court Cases</option>
             <option value="amends">Amendments</option>
             <option value="numbers">Numbers</option>
+            <option value="terms">Key Terms &amp; Models</option>
           </select>
           <button onclick="startFlashcards()" style="padding:8px 18px;background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:var(--navy);border:none;border-radius:8px;font-family:'DM Sans';font-size:13px;font-weight:500;cursor:pointer;">Shuffle &amp; Start</button>
         </div>
@@ -2950,6 +3382,26 @@
     { cat:'numbers', front:'Amendment Process', back:'2/3 of both chambers propose → 3/4 of states (38) ratify. President has NO role.' },
     { cat:'numbers', front:'Supreme Court', back:'9 justices. 5 votes to decide. 4 votes for certiorari (Rule of Four). Lifetime tenure.' },
     { cat:'numbers', front:'Impeachment', back:'House: simple majority to impeach (218+). Senate: 2/3 to convict and remove (67+).' },
+    // Terms & Models
+    { cat:'terms', front:'Three Models of Democracy', back:'Participatory (broad citizen involvement), Pluralist (competing interest groups — Federalist 10), Elite (educated minority governs). Know which scenario matches which.' },
+    { cat:'terms', front:'Delegate vs. Trustee vs. Politico Model', back:'Delegate = votes as district wants. Trustee = votes own judgment (Burke). Politico = switches between both. Most realistic: Politico.' },
+    { cat:'terms', front:'Iron Triangle', back:'3-way relationship: Congressional committee + Federal agency + Interest group. Mutually beneficial, stable. vs. Issue Networks = looser, more actors.' },
+    { cat:'terms', front:'Selective Incorporation', back:'Supreme Court applies Bill of Rights to states case-by-case via 14th Amendment Due Process Clause. Key cases: Gideon (6th), McDonald (2nd), Engel (1st).' },
+    { cat:'terms', front:'Four Voting Models', back:'Rational Choice (self-interest), Retrospective (punish/reward past performance), Prospective (future promises), Party-Line (party ID). Mnemonic: RRPP.' },
+    { cat:'terms', front:'Linkage Institutions', back:'Connect citizens to government: Political Parties, Elections, Interest Groups, Media. They translate public preferences into policy demands.' },
+    { cat:'terms', front:'Agenda Setting / Framing / Priming', back:'Agenda setting = media decides what we think about. Framing = how we think about it. Priming = what standards we use to judge politicians.' },
+    { cat:'terms', front:'Fiscal vs. Monetary Policy', back:'Fiscal = Congress/President taxing & spending. Monetary = Federal Reserve controlling interest rates & money supply. Fed is independent.' },
+    { cat:'terms', front:'Categorical vs. Block Grants', back:'Categorical = specific purpose, strict conditions. Block = lump sum, few strings. Conservatives prefer block; liberals prefer categorical.' },
+    { cat:'terms', front:'Judicial Activism vs. Restraint', back:'Activism = courts strike laws, shape policy (Brown). Restraint = defer to elected branches, interpret narrowly. Originalism ≈ restraint; Living Constitution ≈ activism.' },
+    { cat:'terms', front:'Prior Restraint', back:'Government censorship before publication. Presumed unconstitutional. Heavy burden on government. Established: NYT v. United States (1971) — Pentagon Papers.' },
+    { cat:'terms', front:'Political Efficacy', back:'Internal: belief you understand politics and can participate. External: belief government is actually responsive. Both predict voter turnout.' },
+    { cat:'terms', front:'Gerrymandering', back:'Redrawing districts to favor a party. Cracking = splitting opposition. Packing = concentrating opposition. Shaw v. Reno limits racial gerrymandering.' },
+    { cat:'terms', front:'PACs vs. Super PACs', back:'PAC = direct donations, capped ($5k/candidate). Super PAC (post-Citizens United) = unlimited independent spending, but CANNOT coordinate with candidates.' },
+    { cat:'terms', front:'Political Socialization', back:'How people form political beliefs. Most influential agent: family. Also: school, peers, media, religion, major political events (wars, recessions).' },
+    { cat:'terms', front:'Stare Decisis', back:'"Let the decision stand." Courts follow prior precedents for stability. Supreme Court CAN overturn (e.g., Dobbs overturned Roe), but it is rare.' },
+    { cat:'terms', front:'Dual vs. Cooperative Federalism', back:'Dual (Layer Cake) = separate spheres, pre-New Deal. Cooperative (Marble Cake) = shared functions, modern era. New Federalism = Reagan shift back to states.' },
+    { cat:'terms', front:'Filibuster & Cloture', back:'Filibuster = Senate delay tactic. Cloture = ending a filibuster, requires 60 votes (3/5). House has no filibuster.' },
+    { cat:'terms', front:'Incumbency Advantage', back:'Sitting Congress members win reelection at ~90%+ rates. Reasons: name recognition, casework, franking privilege, fundraising networks.' },
   ];
 
   // ── FLASHCARD ENGINE ──────────────────────────────────
